@@ -1,0 +1,38 @@
+:root {
+  /* Base / backgrounds */
+  --color-bg-page: #D7EDE4;        /* mint green page background */
+  --color-bg-card: #FFFFFF;        /* white card/panel background */
+  --color-bg-sidebar: #2F8F72;     /* dark teal sidebar */
+  --color-bg-soft-teal: #E8F4F0;   /* light teal fill (income icon bg, etc.) */
+
+  /* Primary brand / accent */
+  --color-primary: #2F8F72;        /* main teal/green — buttons, icons, chart line */
+  --color-primary-dark: #1F6E56;   /* darker teal for hover/depth */
+  --color-primary-light: #7FC9AE;  /* lighter teal accent */
+
+  /* Credit card gradient */
+  --color-card-gradient-start: #3AA383;
+  --color-card-gradient-end: #E8C9B0;  /* peach/salmon fade at card bottom */
+
+  /* Secondary accent (yellow/gold) */
+  --color-accent-yellow: #F4C430;   /* progress bars, bar chart highlight, badges */
+  --color-accent-yellow-light: #FBE29B;
+
+  /* Status colors */
+  --color-success: #2F8F72;         /* income, positive %, green up-arrow */
+  --color-success-bg: #DDF3E4;
+  --color-danger: #E0574C;          /* expenses, negative %, red down-arrow */
+  --color-danger-bg: #FBE1DE;
+
+  /* Text */
+  --color-text-primary: #1A1A1A;    /* headings, dark text */
+  --color-text-secondary: #8A8F98;  /* muted labels, subtext */
+  --color-text-muted: #B7BCC3;      /* placeholder/search text */
+
+  /* Neutral / chart bars */
+  --color-neutral-bar: #E4EDE9;     /* inactive bar chart bars */
+  --color-border: #EDEFF2;          /* subtle dividers */
+
+  /* Shadow */
+  --color-shadow: rgba(0, 0, 0, 0.06);
+}
