@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
+import { signInWithGoogle } from "../../utils/supabase";
 
 const SigninGoogleBtn = () => {
+  const handleGoogleSignin = async () => {
+    await signInWithGoogle();
+  };
   return (
-    <div>SigninGoogleBtn</div>
-  )
-}
+    <>
+      <button onClick={() => handleGoogleSignin()}>Sign in with Google</button>
+    </>
+  );
+};
 
-export default SigninGoogleBtn
+export default SigninGoogleBtn;
