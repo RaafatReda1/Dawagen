@@ -12,3 +12,9 @@ export default supabase;
         redirectTo: window.location.origin
     })
 }
+
+export const GetSession = async () =>{
+    const {data, error} = await supabase.auth.getSession();
+    if (error) throw error;
+    return data;
+}
