@@ -1,38 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800;900&display=swap');
+
 :root {
-  /* Base / backgrounds */
-  --color-bg-page: #D7EDE4;        /* mint green page background */
-  --color-bg-card: #FFFFFF;        /* white card/panel background */
-  --color-bg-sidebar: #2F8F72;     /* dark teal sidebar */
-  --color-bg-soft-teal: #E8F4F0;   /* light teal fill (income icon bg, etc.) */
+  /* Base Light Theme */
+  --color-bg-page: #F8F9FA;
+  --color-bg-card: #FFFFFF;
+  --color-bg-sidebar: #1A1C23; 
+  --color-bg-soft-teal: #E8F4F0;
+  
+  --color-primary: #1F6E56;
+  --color-primary-dark: #144939;
+  --color-primary-light: #44B38D;
+  
+  --color-text-primary: #111827;
+  --color-text-secondary: #4B5563;
+  --color-text-muted: #9CA3AF;
+  
+  --color-border: #E5E7EB;
+  --color-shadow: rgba(0, 0, 0, 0.05);
 
-  /* Primary brand / accent */
-  --color-primary: #2F8F72;        /* main teal/green — buttons, icons, chart line */
-  --color-primary-dark: #1F6E56;   /* darker teal for hover/depth */
-  --color-primary-light: #7FC9AE;  /* lighter teal accent */
+  --dl-gradient-primary: linear-gradient(135deg, #1F6E56 0%, #44B38D 100%);
+  --dl-bg-surface: rgba(255, 255, 255, 0.85);
+  --dl-border: rgba(31, 110, 86, 0.15);
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 30px rgba(68, 179, 141, 0.2);
+  --t-fast: 0.2s ease;
+  --t-normal: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius-pill: 9999px;
+  --radius-lg: 1.5rem;
 
-  /* Credit card gradient */
-  --color-card-gradient-start: #3AA383;
-  --color-card-gradient-end: #E8C9B0;  /* peach/salmon fade at card bottom */
+  --font-primary: 'Tajawal', sans-serif;
+  --font-secondary: 'Outfit', sans-serif;
+}
 
-  /* Secondary accent (yellow/gold) */
-  --color-accent-yellow: #F4C430;   /* progress bars, bar chart highlight, badges */
-  --color-accent-yellow-light: #FBE29B;
+html.dark {
+  /* Dark Theme */
+  --color-bg-page: #0B0F19;
+  --color-bg-card: #151A25;
+  --color-bg-sidebar: #0B0F19;
+  
+  --color-text-primary: #F9FAFB;
+  --color-text-secondary: #9CA3AF;
+  --color-text-muted: #4B5563;
+  
+  --color-border: #1F2937;
+  
+  --dl-bg-surface: rgba(21, 26, 37, 0.85);
+  --dl-border: rgba(68, 179, 141, 0.2);
+  --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 40px rgba(68, 179, 141, 0.4);
+}
 
-  /* Status colors */
-  --color-success: #2F8F72;         /* income, positive %, green up-arrow */
-  --color-success-bg: #DDF3E4;
-  --color-danger: #E0574C;          /* expenses, negative %, red down-arrow */
-  --color-danger-bg: #FBE1DE;
+.glass-panel {
+  background: var(--dl-bg-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--dl-border);
+  box-shadow: var(--shadow-md);
+  transition: background-color var(--t-fast), border-color var(--t-fast);
+}
 
-  /* Text */
-  --color-text-primary: #1A1A1A;    /* headings, dark text */
-  --color-text-secondary: #8A8F98;  /* muted labels, subtext */
-  --color-text-muted: #B7BCC3;      /* placeholder/search text */
-
-  /* Neutral / chart bars */
-  --color-neutral-bar: #E4EDE9;     /* inactive bar chart bars */
-  --color-border: #EDEFF2;          /* subtle dividers */
-
-  /* Shadow */
-  --color-shadow: rgba(0, 0, 0, 0.06);
+.text-gradient {
+  background: var(--dl-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

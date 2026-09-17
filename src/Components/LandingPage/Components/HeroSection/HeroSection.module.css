@@ -1,14 +1,120 @@
-.heroSection{
-    height: 100vh;
+.heroSection {
+    min-height: 100vh;
     width: 100vw;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    background-color: var(--color-bg-page);
+    position: relative;
     overflow: hidden;
+    padding: 120px 5% 40px;
+    box-sizing: border-box;
 }
-.heroImg{
-    width: 800px;
-    height: 500px;
-    object-fit: cover;
+
+.backgroundMesh {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(ellipse at center, rgba(68,179,141,0.12) 0%, rgba(255,255,255,0) 70%);
+    filter: blur(80px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1300px;
+    z-index: 1;
+    gap: 60px;
+}
+
+.textContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: right;
+}
+
+.title {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--color-text-primary);
+    margin: 0 0 24px 0;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+}
+
+.title span {
+    display: inline-block;
+    padding-top: 10px;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin: 0 0 40px 0;
+    line-height: 1.7;
+    max-width: 550px;
+}
+
+.ctaWrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.imageContainer {
+    flex: 1.2;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageGlow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    background: var(--color-primary);
+    filter: blur(120px);
+    opacity: 0.12;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.heroImg {
+    width: 100%;
+    height: auto;
+    max-width: 800px;
+    object-fit: contain;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 25px 50px -12px var(--shadow-md);
+}
+
+@media (max-width: 1024px) {
+    .content {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 60px;
+    }
+    .textContainer {
+        align-items: center;
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    .ctaWrapper {
+        justify-content: center;
+    }
+    .title {
+        font-size: 3.2rem;
+    }
 }

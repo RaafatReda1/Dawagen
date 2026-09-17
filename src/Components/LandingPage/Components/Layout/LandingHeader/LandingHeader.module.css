@@ -1,27 +1,76 @@
-.landingHeader{
+.landingHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
-    height: 60px;
-    background-color: #392323;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
-
+    padding: 0 30px;
+    height: 70px;
+    background: var(--dl-bg-surface);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--dl-border);
+    box-shadow: var(--shadow-md);
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    border-radius: var(--radius-pill);
+    z-index: 1000;
+    transition: background-color var(--t-fast), border-color var(--t-fast);
 }
 
-.leftHeaderSection{
+.leftHeaderSection {
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 30px;
 }
 
-.rightHeaderSection{
+.headerActions {
     display: flex;
-    gap: 10px
+    align-items: center;
+    gap: 15px;
 }
 
-.landingLogo{
-    width: 50px;
-    height: 50px;
+.themeToggle {
+    background: transparent;
+    border: none;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color var(--t-fast), color var(--t-fast);
+}
+
+.themeToggle:hover {
+    background-color: var(--color-border);
+    color: var(--color-primary);
+}
+
+.rightHeaderSection {
+    display: flex;
+    gap: 30px;
+}
+
+.navLink {
+    text-decoration: none;
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color var(--t-fast);
+    font-family: var(--font-primary);
+}
+
+.navLink:hover {
+    color: var(--color-primary);
+}
+
+.landingLogo {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    border-radius: 50%;
 }
