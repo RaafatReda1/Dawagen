@@ -74,3 +74,24 @@
     object-fit: contain;
     border-radius: 50%;
 }
+
+@media (max-width: 768px) {
+    .landingHeader {
+        padding: 0 15px;
+        width: 95%;
+        height: 60px;
+        top: 15px;
+    }
+    .rightHeaderSection {
+        display: none; /* Hide nav links on smaller screens */
+    }
+    .leftHeaderSection {
+        gap: 15px;
+        width: 100%;
+        justify-content: space-between; /* Space out logo and actions */
+    }
+    .landingLogo {
+        width: 35px;
+        height: 35px;
+    }
+}
