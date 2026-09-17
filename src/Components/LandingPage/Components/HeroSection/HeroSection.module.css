@@ -1,0 +1,14 @@
+.heroSection{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-bg-page);
+    overflow: hidden;
+}
+.heroImg{
+    width: 800px;
+    height: 500px;
+    object-fit: cover;
+}

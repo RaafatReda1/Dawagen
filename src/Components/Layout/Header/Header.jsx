@@ -1,9 +1,9 @@
-import React from 'react'
-
+import SigninGoogleBtn from "../../Auth/SigninGoogleBtn";
+import styles from "./Header.module.css";
 const Header = () => {
-  return (
-    <div>Header</div>
-  )
-}
+  return <>
+    
+  </>;
+};
 
-export default Header
+export default Header;
