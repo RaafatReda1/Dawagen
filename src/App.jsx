@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-
+import { BrowserRouter } from "react-router-dom";
 import "./App.css";
-import SigninGoogleBtn from "./Components/Auth/SigninGoogleBtn";
 import supabase from "./utils/supabase";
 import LandingPage from "./Components/LandingPage/LandingPage";
-
+import AdminPanel from "./Components/AdminPanel/AdminPanel";
+import { SessionContext } from "./utils/context";
 function App() {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
-  const signOut = async () => await supabase.auth.signOut();
+
   useEffect(() => {
     let mounted = true;
 
@@ -33,20 +33,30 @@ function App() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        جاري التحميل...
+      </div>
+    );
   }
 
   return (
-    <>
+    <SessionContext.Provider value={session}>
       {session ? (
-        <>
-          <h1>{session.user.email}</h1>
-          <button onClick={signOut}>Sign out</button>
-        </>
+        <BrowserRouter>
+          <AdminPanel />
+        </BrowserRouter>
       ) : (
         <LandingPage />
       )}
-    </>
+    </SessionContext.Provider>
   );
 }
 

@@ -1,0 +1,89 @@
+.sidebarWrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-bg-card);
+  position: relative;
+  z-index: 10;
+}
+
+.sidebarCurve {
+  width: 100px;
+  height: 85vh;
+  background-color: var(--color-primary);
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+}
+
+/* Inverted rounded corners for organic curve */
+.sidebarCurve::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle at 0 0, transparent 40px, var(--color-primary) 41px);
+}
+
+.sidebarCurve::after {
+  content: "";
+  position: absolute;
+  bottom: -40px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle at 0 100%, transparent 40px, var(--color-primary) 41px);
+}
+
+.logoContainer {
+  margin-bottom: 50px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  background: white;
+  border-radius: 12px;
+  padding: 5px;
+}
+
+.navContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  align-items: center;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  transition: all var(--t-fast);
+  text-decoration: none;
+  position: relative;
+  z-index: 2;
+}
+
+.navItem:hover:not(.active) {
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.navItem.active {
+  background-color: #fff;
+  color: var(--color-primary);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}

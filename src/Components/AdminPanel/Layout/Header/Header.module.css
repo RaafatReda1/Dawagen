@@ -1,0 +1,92 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 40px;
+  background-color: var(--color-bg-card);
+  z-index: 5;
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--color-bg-page);
+  border-radius: var(--radius-pill);
+  padding: 10px 20px;
+  width: 400px;
+  max-width: 50%;
+  border: 1px solid var(--color-border);
+}
+
+.searchIcon {
+  color: var(--color-text-muted);
+}
+
+.searchInput {
+  border: none;
+  background: transparent;
+  outline: none;
+  color: var(--color-text-primary);
+  font-family: var(--font-primary);
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+.searchInput::placeholder {
+  color: var(--color-text-muted);
+}
+
+.actionsContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.iconBtn {
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--t-fast);
+}
+
+.iconBtn:hover {
+  background-color: var(--color-bg-page);
+  color: var(--color-primary);
+}
+
+.userProfile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 12px;
+  background-color: var(--color-bg-page);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--t-fast);
+  border: 1px solid var(--color-border);
+}
+
+.userProfile:hover {
+  background-color: var(--color-border);
+}
+
+.userName {
+  font-family: var(--font-secondary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
