@@ -2,6 +2,7 @@ import { Search, Bell, Settings, LogOut, PanelRight, Plus, Clock } from "lucide-
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { SessionContext } from "../../../../utils/context";
+import { useCycles } from "../../Cycles/Context/CycleContext";
 import supabase from "../../../../utils/supabase";
 import styles from "./Header.module.css";
 
@@ -9,6 +10,7 @@ const Header = ({ onMobileMenuOpen }) => {
   const session = useContext(SessionContext);
   const user = session?.user;
   const navigate = useNavigate();
+  const { openNewModal } = useCycles();
   const signOut = async () => await supabase.auth.signOut();
 
   const avatarUrl = user?.user_metadata?.avatar_url ||
@@ -33,7 +35,7 @@ const Header = ({ onMobileMenuOpen }) => {
           <Clock size={16} />
           <span>الدورات السابقة</span>
         </button>
-        <button className={styles.newCycleBtn} onClick={() => navigate('/cycles')} title="دورة جديدة">
+        <button className={styles.newCycleBtn} onClick={openNewModal} title="دورة جديدة">
           <Plus size={16} />
           <span>دورة جديدة</span>
         </button>

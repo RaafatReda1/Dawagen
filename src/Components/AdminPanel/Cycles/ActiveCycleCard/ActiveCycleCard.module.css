@@ -1,0 +1,83 @@
+.card {
+  background: linear-gradient(135deg, rgba(31, 110, 86, 0.08) 0%, rgba(68, 179, 141, 0.04) 100%);
+  border: 1px solid rgba(31, 110, 86, 0.25);
+  border-radius: 24px;
+  padding: 24px 28px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.titleArea {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(31, 110, 86, 0.15);
+  color: var(--color-primary);
+  font-family: var(--font-primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.pulseDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+}
+
+.cycleTitle {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.statBox {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statLabel {
+  font-family: var(--font-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.statValue {
+  font-family: var(--font-secondary);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+}

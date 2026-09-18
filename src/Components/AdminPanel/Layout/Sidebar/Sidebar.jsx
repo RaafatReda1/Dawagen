@@ -5,6 +5,7 @@ import {
   CalendarDays, Wheat, Syringe, Calculator, LayoutDashboard, Newspaper, Settings, LogOut, Plus, Clock
 } from "lucide-react";
 import { SessionContext } from "../../../../utils/context";
+import { useCycles } from "../../Cycles/Context/CycleContext";
 import supabase from "../../../../utils/supabase";
 import styles from "./Sidebar.module.css";
 
@@ -81,6 +82,7 @@ const DesktopSidebar = () => {
 const MobileSidebar = ({ mobileOpen, onMobileClose }) => {
   const navigate = useNavigate();
   const session = useContext(SessionContext);
+  const { openNewModal } = useCycles();
   const user = session?.user;
   const avatar = user?.user_metadata?.avatar_url ||
     `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.user_metadata?.name || "U")}&background=1F6E56&color=fff&rounded=true`;
@@ -98,7 +100,7 @@ const MobileSidebar = ({ mobileOpen, onMobileClose }) => {
           <div className={styles.drawerQuickActions}>
             <button
               className={styles.drawerNewCycleBtn}
-              onClick={() => { navigate('/cycles'); onMobileClose(); }}
+              onClick={() => { openNewModal(); onMobileClose(); }}
             >
               <Plus size={18} />
               <span>دورة جديدة</span>

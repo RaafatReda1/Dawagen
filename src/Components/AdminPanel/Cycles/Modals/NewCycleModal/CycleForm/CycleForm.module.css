@@ -1,0 +1,32 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 28px 24px;
+}
+
+.twoColRow {
+  display: flex;
+  gap: 14px;
+}
+
+.errorBanner {
+  background: rgba(255, 82, 82, 0.1);
+  border: 1px solid rgba(255, 82, 82, 0.3);
+  color: #ff5252;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .form {
+    padding: 16px 18px 20px;
+    gap: 14px;
+  }
+  .twoColRow {
+    flex-direction: column;
+  }
+}
