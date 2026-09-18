@@ -1,5 +1,6 @@
-import { Search, Bell, Settings, Moon, LogOut, PanelRight } from "lucide-react";
+import { Search, Bell, Settings, LogOut, PanelRight, Plus, Clock } from "lucide-react";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { SessionContext } from "../../../../utils/context";
 import supabase from "../../../../utils/supabase";
 import styles from "./Header.module.css";
@@ -7,6 +8,7 @@ import styles from "./Header.module.css";
 const Header = ({ onMobileMenuOpen }) => {
   const session = useContext(SessionContext);
   const user = session?.user;
+  const navigate = useNavigate();
   const signOut = async () => await supabase.auth.signOut();
 
   const avatarUrl = user?.user_metadata?.avatar_url ||
@@ -14,27 +16,34 @@ const Header = ({ onMobileMenuOpen }) => {
 
   return (
     <header className={styles.header}>
-      {/* Mobile menu trigger — only visible on small screens */}
-      <button className={styles.mobileMenuBtn} onClick={onMobileMenuOpen} aria-label="فتح القائمة">
+      {/* Mobile trigger */}
+      <button className={styles.mobileMenuBtn} onClick={onMobileMenuOpen} aria-label="القائمة">
         <PanelRight size={22} />
       </button>
 
+      {/* Search */}
       <div className={styles.searchContainer}>
         <Search size={18} className={styles.searchIcon} />
         <input type="text" placeholder="ابحث هنا..." className={styles.searchInput} />
       </div>
 
-      <div className={styles.actionsContainer}>
-        <button className={styles.iconBtn} aria-label="Notifications">
-          <Bell size={20} />
+      {/* Cycle action buttons */}
+      <div className={styles.cycleActions}>
+        <button className={styles.prevCyclesBtn} onClick={() => navigate('/cycles')} title="الدورات السابقة">
+          <Clock size={16} />
+          <span>الدورات السابقة</span>
         </button>
-        <button className={styles.iconBtn} aria-label="Settings">
-          <Settings size={20} />
+        <button className={styles.newCycleBtn} onClick={() => navigate('/cycles')} title="دورة جديدة">
+          <Plus size={16} />
+          <span>دورة جديدة</span>
         </button>
-        <button className={styles.iconBtn} onClick={signOut} aria-label="تسجيل الخروج">
-          <LogOut size={20} />
-        </button>
+      </div>
 
+      {/* Right actions */}
+      <div className={styles.actionsContainer}>
+        <button className={styles.iconBtn} aria-label="Notifications"><Bell size={20} /></button>
+        <button className={`${styles.iconBtn} ${styles.desktopOnlyBtn}`} aria-label="Settings"><Settings size={20} /></button>
+        <button className={`${styles.iconBtn} ${styles.desktopOnlyBtn}`} onClick={signOut} aria-label="تسجيل الخروج"><LogOut size={20} /></button>
         <div className={styles.userProfile}>
           <img src={avatarUrl} alt="Profile" className={styles.avatar} />
           <span className={styles.userName}>{user?.user_metadata?.name}</span>

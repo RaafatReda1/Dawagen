@@ -1,21 +1,31 @@
 import { useContext, useRef, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import {
-  LayoutDashboard, Calendar, Wallet,
-  FileText, Users, Settings, LogOut
+  CalendarDays, Wheat, Syringe, Calculator, LayoutDashboard, Newspaper, Settings, LogOut, Plus, Clock
 } from "lucide-react";
 import { SessionContext } from "../../../../utils/context";
 import supabase from "../../../../utils/supabase";
 import styles from "./Sidebar.module.css";
 
+/* 
+  Tabs discovered from MainApp.Excalidraw:
+  - الدورة الحالية : shows the current active cycle, its days, and daily records
+  - العلف   : feed management & shipment history
+  - الادوية  : drugs dashboard + add a drug
+  - الاعدادات: app settings
+
+  Header buttons (not sidebar tabs):
+  - دورة جديدة +
+  - الدورات السابقة
+*/
 const NAV = [
-  { path: "/",         icon: LayoutDashboard, label: "الرئيسية"   },
-  { path: "/cycles",   icon: Calendar,        label: "الدورات"    },
-  { path: "/finances", icon: Wallet,          label: "المالية"    },
-  { path: "/reports",  icon: FileText,        label: "التقارير"   },
-  { path: "/users",    icon: Users,           label: "المستخدمين" },
-  { path: "/settings", icon: Settings,        label: "الإعدادات"  },
+  { path: "/",       icon: CalendarDays,    label: "الايام"                  },
+  { path: "/feed",   icon: Wheat,           label: "العلف"                   },
+  { path: "/drugs",  icon: Syringe,         label: "الادوية"                  },
+  { path: "/export", icon: Calculator,      label: "حسابات يوم التصدير" },
+  { path: "/overview",icon: LayoutDashboard,label: "نظرة عامة علي الدورة"    },
+  { path: "/news",   icon: Newspaper,       label: "اخبار واحصائيات"          },
 ];
 
 const NavItem = ({ path, icon: Icon, label, onClick }) => (
@@ -69,6 +79,7 @@ const DesktopSidebar = () => {
 
 /* ── Mobile drawer ────────────────────────────── */
 const MobileSidebar = ({ mobileOpen, onMobileClose }) => {
+  const navigate = useNavigate();
   const session = useContext(SessionContext);
   const user = session?.user;
   const avatar = user?.user_metadata?.avatar_url ||
@@ -82,6 +93,23 @@ const MobileSidebar = ({ mobileOpen, onMobileClose }) => {
           <div className={styles.drawerLogo}>
             <img src="logo.png" alt="logo" className={styles.logo} />
             <span className={styles.brandName}>Dawagen</span>
+          </div>
+
+          <div className={styles.drawerQuickActions}>
+            <button
+              className={styles.drawerNewCycleBtn}
+              onClick={() => { navigate('/cycles'); onMobileClose(); }}
+            >
+              <Plus size={18} />
+              <span>دورة جديدة</span>
+            </button>
+            <button
+              className={styles.drawerPrevCyclesBtn}
+              onClick={() => { navigate('/cycles'); onMobileClose(); }}
+            >
+              <Clock size={18} />
+              <span>الدورات السابقة</span>
+            </button>
           </div>
 
           <nav className={styles.drawerNav}>

@@ -230,6 +230,61 @@
   letter-spacing: -0.02em;
 }
 
+/* ── Drawer Quick Action Buttons ──────────────── */
+.drawerQuickActions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.drawerNewCycleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 16px;
+  background: #fff;
+  color: #1a7a62;
+  border: none;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.drawerNewCycleBtn:active {
+  transform: scale(0.98);
+}
+
+.drawerPrevCyclesBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-family: var(--font-primary);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.drawerPrevCyclesBtn:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
 .drawerNav {
   display: flex;
   flex-direction: column;
