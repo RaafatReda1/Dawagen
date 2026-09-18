@@ -1,26 +1,42 @@
-    import { Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Sidebar from './Sidebar/Sidebar';
 import Header from './Header/Header';
 import styles from './AdminLayout.module.css';
+import DashboardTab from '../Tabs/DashboardTab';
 
-// Placeholder components for tabs
-const Dashboard = () => <div className={styles.page}>لوحة التحكم</div>;
-const Cycles = () => <div className={styles.page}>الدورات</div>;
+const PlaceholderPage = ({ title }) => (
+  <div style={{ padding: '40px 0', fontFamily: 'var(--font-primary)', color: 'var(--color-text-primary)', fontSize: '1.5rem', fontWeight: 800 }}>
+    {title}
+  </div>
+);
 
-const AdminLayout = ({ user, signOut }) => {
+const AdminLayout = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
-    <div className={styles.layoutContainer}>
-      <div className={styles.appWrapper}>
+    <div className={styles.shell}>
+      {/* ── Desktop floating sidebar ── */}
+      <div className={styles.sidebarCol}>
         <Sidebar />
-        <div className={styles.mainContent}>
-          <Header user={user} signOut={signOut} />
-          <div className={styles.pageContent}>
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/cycles" element={<Cycles />} />
-              <Route path="*" element={<Dashboard />} />
-            </Routes>
-          </div>
+      </div>
+
+      {/* ── Mobile overlay sidebar ── */}
+      <Sidebar mobile mobileOpen={mobileOpen} onMobileClose={() => setMobileOpen(false)} />
+
+      {/* ── Main white content card ── */}
+      <div className={styles.contentCard}>
+        <Header onMobileMenuOpen={() => setMobileOpen(true)} />
+        <div className={styles.pageScroll}>
+          <Routes>
+            <Route path="/" element={<DashboardTab />} />
+            <Route path="/cycles" element={<PlaceholderPage title="الدورات" />} />
+            <Route path="/finances" element={<PlaceholderPage title="المالية" />} />
+            <Route path="/reports" element={<PlaceholderPage title="التقارير" />} />
+            <Route path="/users" element={<PlaceholderPage title="المستخدمين" />} />
+            <Route path="/settings" element={<PlaceholderPage title="الإعدادات" />} />
+            <Route path="*" element={<DashboardTab />} />
+          </Routes>
         </div>
       </div>
     </div>

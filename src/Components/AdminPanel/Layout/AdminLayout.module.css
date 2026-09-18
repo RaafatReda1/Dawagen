@@ -1,40 +1,61 @@
-.layoutContainer {
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   AdminLayout — full-screen shell
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.shell {
+  display: flex;
   height: 100vh;
   width: 100vw;
-  background-color: var(--color-bg-card);
-  display: flex;
+  background:
+    radial-gradient(ellipse at 10% 20%, rgba(68,179,141,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 90% 80%, rgba(31,110,86,0.12) 0%, transparent 55%),
+    #e4f2ed;
   overflow: hidden;
-}
-
-.appWrapper {
-  width: 100%;
-  height: 100vh;
-  background-color: var(--color-bg-card);
-  display: flex;
   position: relative;
-  overflow: hidden;
 }
 
-.mainContent {
+/* ━━ Right column: sidebar area ━━━━━━━━━━━━━━━ */
+.sidebarCol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 12px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* ━━ Left column: white content card ━━━━━━━━━━ */
+.contentCard {
   flex: 1;
+  margin: 16px 16px 16px 0;
+  background-color: var(--color-bg-card);
+  border-radius: 32px;
   display: flex;
   flex-direction: column;
-  height: 100%;
   overflow: hidden;
-  position: relative;
-  z-index: 1;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  min-width: 0;
 }
 
-.pageContent {
+.pageScroll {
   flex: 1;
   overflow-y: auto;
-  padding: 0 40px 40px;
-  background: var(--color-bg-card);
+  padding: 0 36px 36px;
 }
 
-.page {
-  font-family: var(--font-primary);
-  color: var(--color-text-primary);
-  font-size: 1.5rem;
-  font-weight: 700;
+/* ━━ Mobile ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media (max-width: 768px) {
+  .shell {
+    background-color: var(--color-bg-card);
+  }
+  .sidebarCol {
+    display: none; /* sidebar is overlay on mobile */
+  }
+  .contentCard {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .pageScroll {
+    padding: 0 16px 24px;
+  }
 }

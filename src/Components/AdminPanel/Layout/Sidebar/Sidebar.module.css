@@ -1,89 +1,324 @@
-.sidebarWrapper {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  background-color: var(--color-bg-card);
-  position: relative;
-  z-index: 10;
-}
-
-.sidebarCurve {
-  width: 100px;
-  height: 85vh;
-  background-color: var(--color-primary);
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
-  position: relative;
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   DESKTOP — Extraordinary floating pill
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.pill {
+  width: 80px;
+  background: linear-gradient(175deg, #1a7a62 0%, #0d4a38 100%);
+  border-radius: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 0;
-  box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+  padding: 24px 0 20px;
+  box-sizing: border-box;
+  box-shadow:
+    0 20px 60px rgba(15, 80, 60, 0.5),
+    0 0 0 1px rgba(255,255,255,0.08) inset,
+    0 1px 0 rgba(255,255,255,0.18) inset;
+  position: relative;
+  overflow: visible;
 }
 
-/* Inverted rounded corners for organic curve */
-.sidebarCurve::before {
-  content: "";
+/* Subtle inner shine at top */
+.pill::before {
+  content: '';
   position: absolute;
-  top: -40px;
-  right: 0;
-  width: 40px;
-  height: 40px;
-  background: radial-gradient(circle at 0 0, transparent 40px, var(--color-primary) 41px);
-}
-
-.sidebarCurve::after {
-  content: "";
-  position: absolute;
-  bottom: -40px;
-  right: 0;
-  width: 40px;
-  height: 40px;
-  background: radial-gradient(circle at 0 100%, transparent 40px, var(--color-primary) 41px);
-}
-
-.logoContainer {
-  margin-bottom: 50px;
+  top: 0; left: 12px; right: 12px;
+  height: 60%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.07) 0%, transparent 100%);
+  border-radius: 40px 40px 0 0;
+  pointer-events: none;
 }
 
 .logo {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   object-fit: contain;
-  background: white;
-  border-radius: 12px;
-  padding: 5px;
+  border-radius: 16px;
+  padding: 7px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  margin-bottom: 24px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-.navContainer {
+/* ── Nav ───────────────────────────────────────── */
+.nav {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  width: 100%;
   align-items: center;
+  gap: 6px;
+  flex: 1;
+  width: 100%;
+  padding: 0 12px;
+  box-sizing: border-box;
 }
 
 .navItem {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 16px;
-  color: rgba(255, 255, 255, 0.6);
-  transition: all var(--t-fast);
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
+  color: rgba(255,255,255,0.45);
   text-decoration: none;
+  transition: color 0.22s;
+  will-change: transform;
   position: relative;
-  z-index: 2;
+}
+
+.navLabel {
+  display: none;
 }
 
 .navItem:hover:not(.active) {
-  color: #fff;
-  transform: translateY(-2px);
+  color: rgba(255,255,255,0.85);
 }
 
 .navItem.active {
-  background-color: #fff;
-  color: var(--color-primary);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  color: #1a7a62;
+}
+
+/* Glowing white capsule behind active icon */
+.navItem.active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow:
+    0 0 0 4px rgba(255,255,255,0.15),
+    0 8px 24px rgba(0,0,0,0.18);
+}
+
+.navItem.active svg {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Footer ────────────────────────────────────── */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  width: 100%;
+  padding: 0 14px;
+  box-sizing: border-box;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,0.3);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.signOut {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.55);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.signOut:hover {
+  background: rgba(255, 90, 90, 0.2);
+  border-color: rgba(255,90,90,0.3);
+  color: #ff8080;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MOBILE — Extraordinary slide-in drawer
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  z-index: 299;
+  pointer-events: none;
+  transition: background 0.35s ease;
+}
+
+.backdropOpen {
+  background: rgba(0,0,0,0.6);
+  pointer-events: all;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.drawer {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 290px;
+  z-index: 300;
+  flex-direction: column;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 28px 0 0 28px;
+  overflow: hidden;
+  transform: translateX(105%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.drawerOpen {
+  transform: translateX(0);
+}
+
+/* Gradient background for drawer */
+.drawerInner {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(175deg, #1a7a62 0%, #0c3d2d 100%);
+  box-shadow: -20px 0 60px rgba(0,0,0,0.4);
+  padding: 48px 20px 32px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative background circles */
+.drawerInner::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 250px; height: 250px;
+  background: radial-gradient(circle, rgba(68,179,141,0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.drawerInner::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: -60px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(68,179,141,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.drawerLogo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.brandName {
+  font-family: var(--font-secondary);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.drawerNav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+/* Override navItem layout in drawer */
+.drawerNav .navItem {
+  width: 100%;
+  height: 56px;
+  justify-content: flex-start;
+  gap: 16px;
+  padding: 0 18px;
+  border-radius: 18px;
+}
+
+.drawerNav .navItem::before {
+  border-radius: 18px;
+}
+
+.drawerNav .navLabel {
+  display: inline;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+.drawerNav .navItem.active {
+  color: #1a7a62;
+}
+
+.drawerNav .navItem.active .navLabel {
+  color: #1a7a62;
+}
+
+/* Divider */
+.drawerDivider {
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+  margin: 16px 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* User card at bottom */
+.drawerFooter {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.drawerUser {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.drawerName {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.drawerEmail {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+  .backdrop,
+  .drawer {
+    display: flex;
+  }
 }
