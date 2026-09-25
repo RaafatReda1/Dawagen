@@ -1,18 +1,16 @@
 import { useState } from "react";
-import { useCycles } from "../../Cycles/Context/CycleContext";
 import { getGeneralNavItems, getCycleNavItems } from "./navConfig";
 import CycleNavHeader from "./CycleNavHeader";
 import NavSection from "./NavSection";
 import SidebarUserFooter from "./SidebarUserFooter";
 import SidebarCollapseToggle from "./SidebarCollapseToggle";
+import useCycleRouteInfo from "../../Hooks/useCycleRouteInfo";
 import styles from "./Sidebar.module.css";
 
 const DesktopSidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const { viewedCycle, isViewingHistorical } = useCycles();
-  const cycleId = viewedCycle?.id;
-  const basePath = isViewingHistorical && cycleId ? `/cycles/${cycleId}` : "/current-cycle";
-
+  const { isViewingHistorical, cycleIdFromUrl, basePath, cycleData } = useCycleRouteInfo();
+  console.log("cycleData", cycleData);
   return (
     <div className={`${styles.pill} ${collapsed ? styles.pillCollapsed : ""}`}>
       <SidebarCollapseToggle collapsed={collapsed} onToggle={() => setCollapsed(!collapsed)} />
@@ -23,7 +21,12 @@ const DesktopSidebar = () => {
       <nav className={styles.navContainer}>
         <NavSection title="عام" items={getGeneralNavItems()} collapsed={collapsed} />
         <div className={styles.divider} />
-        <CycleNavHeader isViewingHistorical={isViewingHistorical} cycleId={cycleId} chickType={viewedCycle?.chick_type} collapsed={collapsed} />
+        <CycleNavHeader
+          isViewingHistorical={isViewingHistorical}
+          cycleId={cycleIdFromUrl}
+          chickType={cycleData?.chick_type}
+          collapsed={collapsed}
+        />
         <NavSection items={getCycleNavItems(basePath)} collapsed={collapsed} />
       </nav>
 

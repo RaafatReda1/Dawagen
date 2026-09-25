@@ -1,14 +1,5 @@
 import { useState, useEffect } from "react";
 
-/**
- * useMountLoader
- * Automatically steps through an array of loading operations.
- * Yields the main thread between steps to allow the browser to paint the loading UI.
- * 
- * @param {Array} steps Array of { message, delay, action: async () => void }
- * @param {boolean} start Whether to start the loader (default true)
- * @returns {object} { isComplete, currentStepIndex, stepMessage, progress }
- */
 export const useMountLoader = (steps = [], start = true) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
