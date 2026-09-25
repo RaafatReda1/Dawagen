@@ -1,3 +1,38 @@
+export const formatEgp = (val, { showSign = false, compact = true } = {}) => {
+  if (val == null || isNaN(val)) return "0 EGP";
+  const num = Number(val);
+  if (num === 0) return "0 EGP";
+
+  const isNeg = num < 0;
+  const abs = Math.abs(num);
+
+  let formatted = "";
+
+  if (compact) {
+    if (abs >= 1_000_000) {
+      formatted = `${(abs / 1_000_000).toFixed(1)}M`;
+    } else if (abs >= 1_000) {
+      formatted = `${(abs / 1_000).toFixed(1)}K`;
+    } else {
+      formatted = `${Math.round(abs).toLocaleString()}`;
+    }
+  } else {
+    formatted = `${Math.round(abs).toLocaleString()}`;
+  }
+
+  // Remove trailing .0 before K/M (e.g. 30.0K -> 30K)
+  formatted = formatted.replace(/\.0([KM])/, "$1");
+
+  let sign = "";
+  if (isNeg) {
+    sign = "-";
+  } else if (showSign && num > 0) {
+    sign = "+";
+  }
+
+  return `${sign}${formatted} EGP`;
+};
+
 export const formatCompact = (val, unit = "") => {
   if (val == null || isNaN(val)) return { compact: "—", full: "غير متوفر" };
   const num = Number(val);
@@ -7,13 +42,13 @@ export const formatCompact = (val, unit = "") => {
   let compact = "";
   if (abs >= 1_000_000) {
     compact = `${(abs / 1_000_000).toFixed(1)}M`;
-  } else if (abs >= 10_000) {
-    compact = `${(abs / 1_000).toFixed(1)}K`;
   } else if (abs >= 1_000) {
     compact = `${(abs / 1_000).toFixed(1)}K`;
   } else {
-    compact = `${Number(abs.toFixed(2))}`;
+    compact = `${Math.round(abs)}`;
   }
+
+  compact = compact.replace(/\.0([KM])/, "$1");
 
   if (isNeg) compact = `-${compact}`;
   const full = `${num.toLocaleString("ar-EG")} ${unit}`.trim();

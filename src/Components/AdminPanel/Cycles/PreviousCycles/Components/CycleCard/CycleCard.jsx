@@ -4,7 +4,6 @@ import CycleHeader from "./Components/Header/CycleHeader";
 import SummaryBanner from "./Components/SummaryBanner/SummaryBanner";
 import FinancialDetails from "./Components/FinancialDetails/FinancialDetails";
 import ReceivablesSection from "./Components/ReceivablesSection/ReceivablesSection";
-import ChequeDetails from "./Components/ChequeDetails/ChequeDetails";
 import ProfitLossFooter from "./Components/ProfitLossFooter/ProfitLossFooter";
 import ActionButton from "./Components/ActionButton/ActionButton";
 import styles from "./CycleCard.module.css";
@@ -24,8 +23,6 @@ const CycleCard = ({ cycle }) => {
   const netProfitLoss = metrics?.cards?.netProfitLoss ?? 30000;
   const receivablesOwed = metrics?.cards?.receivablesOwed ?? 50000;
   const debtsOwed = metrics?.cards?.debtsOwed ?? 30000;
-  const chickCost = metrics?.chickFinancials?.chickCost ?? 40000;
-  const soldChickCost = metrics?.salesFinancials?.totalSalesRevenue ?? 90000;
 
   return (
     <div className={styles.cardContainer}>
@@ -33,7 +30,6 @@ const CycleCard = ({ cycle }) => {
       <SummaryBanner totalRevenue={totalRevenue} totalExpenses={totalExpenses} netProfitLoss={netProfitLoss} />
       <FinancialDetails totalRevenue={totalRevenue} totalExpenses={totalExpenses} netProfitLoss={netProfitLoss} />
       <ReceivablesSection receivablesOwed={receivablesOwed} debtsOwed={debtsOwed} />
-      <ChequeDetails chickCost={chickCost} soldChickCost={soldChickCost} />
       <ProfitLossFooter netProfitLoss={netProfitLoss} />
       <ActionButton cycleId={cycleNumber} />
     </div>

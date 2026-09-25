@@ -1,5 +1,6 @@
 import React from "react";
 import { FileText, ArrowUpRight, ArrowDownRight, BarChart3 } from "lucide-react";
+import { formatEgp } from "../../../../../../../../utils/formatters";
 import styles from "./FinancialDetails.module.css";
 
 const FinancialDetails = ({ totalRevenue, totalExpenses, netProfitLoss }) => {
@@ -15,21 +16,21 @@ const FinancialDetails = ({ totalRevenue, totalExpenses, netProfitLoss }) => {
           <div className={styles.iconBadge} style={{ background: "#D1FAE5", color: "#10B981" }}><ArrowUpRight size={15} /></div>
           <span>دخل الدورة</span>
         </div>
-        <span className={styles.rowValue}>{totalRevenue.toLocaleString()} EGP</span>
+        <span className={styles.rowValue}>{formatEgp(totalRevenue)}</span>
       </div>
       <div className={styles.row}>
         <div className={styles.rowLabel}>
           <div className={styles.iconBadge} style={{ background: "#FEE2E2", color: "#EF4444" }}><ArrowDownRight size={15} /></div>
           <span>تكلفة الدورة</span>
         </div>
-        <span className={styles.rowValue}>{totalExpenses.toLocaleString()} EGP</span>
+        <span className={styles.rowValue}>{formatEgp(totalExpenses)}</span>
       </div>
       <div className={styles.row}>
         <div className={styles.rowLabel}>
           <div className={styles.iconBadge} style={{ background: isProfit ? "#D1FAE5" : "#FEE2E2", color: isProfit ? "#10B981" : "#EF4444" }}><BarChart3 size={15} /></div>
           <span>صافي النتيجة</span>
         </div>
-        <span className={styles.rowValue} style={{ color: isProfit ? "#059669" : "#DC2626" }}>{isProfit ? "+" : ""}{netProfitLoss.toLocaleString()} EGP</span>
+        <span className={styles.rowValue} style={{ color: isProfit ? "#059669" : "#DC2626" }}>{formatEgp(netProfitLoss, { showSign: true })}</span>
       </div>
     </div>
   );

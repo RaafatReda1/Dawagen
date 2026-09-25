@@ -1,5 +1,6 @@
 import React from "react";
 import { TrendingUp, TrendingDown } from "lucide-react";
+import { formatEgp } from "../../../../../../../../utils/formatters";
 import styles from "./ProfitLossFooter.module.css";
 
 const ProfitLossFooter = ({ netProfitLoss }) => {
@@ -13,7 +14,7 @@ const ProfitLossFooter = ({ netProfitLoss }) => {
         <span>خسارة/كسب الحساب</span>
       </div>
       <span className={styles.value} style={{ color: isProfit ? "#059669" : "#DC2626" }}>
-        {isProfit ? "+" : ""}{netProfitLoss.toLocaleString()} EGP
+        {formatEgp(netProfitLoss, { showSign: true })}
       </span>
     </div>
   );
