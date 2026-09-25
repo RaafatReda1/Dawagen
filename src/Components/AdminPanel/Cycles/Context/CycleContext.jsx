@@ -39,10 +39,7 @@ export const CycleProvider = ({ children }) => {
       }
 
       if (!createdObj) {
-        createdObj = {
-          id: Date.now(),
-          ...payload,
-        };
+        return ;
       }
 
       setActiveCycle(createdObj);
