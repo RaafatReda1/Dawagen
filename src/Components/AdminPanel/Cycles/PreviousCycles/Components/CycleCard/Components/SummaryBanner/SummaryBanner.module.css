@@ -12,8 +12,8 @@
 
 .donutWrapper {
   position: relative;
-  width: 90px;
-  height: 90px;
+  width: 92px;
+  height: 92px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,28 +34,45 @@
 
 .donutFill {
   fill: none;
-  stroke: #34d399;
   stroke-width: 6;
-  stroke-dasharray: 220;
+  stroke-dasharray: 213.6;
   stroke-linecap: round;
-  transition: stroke-dashoffset 0.8s ease;
+  transition: stroke-dashoffset 0.8s ease, stroke 0.3s ease;
 }
 
 .donutContent {
   position: absolute;
   text-align: center;
-  line-height: 1.1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 4px;
+  box-sizing: border-box;
 }
 
 .donutLabel {
   font-size: 0.65rem;
-  opacity: 0.85;
+  opacity: 0.9;
+  font-weight: 600;
+  line-height: 1;
 }
 
 .donutValue {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 800;
-  margin-top: 2px;
+  margin-top: 3px;
+  direction: ltr;
+  white-space: nowrap;
+  letter-spacing: -0.2px;
+}
+
+.unitSub {
+  font-size: 0.58rem;
+  opacity: 0.8;
+  margin-top: 1px;
+  font-weight: 600;
 }
 
 .statBox {
