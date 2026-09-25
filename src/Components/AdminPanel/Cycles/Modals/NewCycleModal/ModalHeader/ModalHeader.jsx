@@ -13,7 +13,7 @@ const ModalHeader = ({ onClose }) => {
           <p className={styles.subtitle}>أدخل بيانات القطيع الأولية لبدء تتبع الدورة</p>
         </div>
       </div>
-      <button className={styles.closeBtn} onClick={onClose} aria-label="إغلاق">
+      <button className={styles.closeBtn} type="button" onClick={onClose} aria-label="إغلاق">
         <X size={18} />
       </button>
     </div>

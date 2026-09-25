@@ -1,6 +1,7 @@
 import { PanelRight } from "lucide-react";
 import HeaderSearch from "./HeaderSearch";
 import HeaderUserActions from "./HeaderUserActions";
+import HeaderCycleButtons from "./HeaderCycleButtons";
 import styles from "./Header.module.css";
 
 const Header = ({ onMobileMenuOpen }) => {
@@ -10,6 +11,7 @@ const Header = ({ onMobileMenuOpen }) => {
         <PanelRight size={22} />
       </button>
       <HeaderSearch />
+      <HeaderCycleButtons />
       <HeaderUserActions />
     </header>
   );

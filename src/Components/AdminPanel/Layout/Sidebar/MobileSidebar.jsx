@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useCycles } from "../../Cycles/Context/CycleContext";
 import { getGeneralNavItems, getCycleNavItems } from "./navConfig";
 import CycleNavHeader from "./CycleNavHeader";
 import NavSection from "./NavSection";
@@ -8,11 +9,9 @@ import styles from "./Sidebar.module.css";
 
 const MobileSidebar = ({ mobileOpen, onMobileClose }) => {
   const navigate = useNavigate();
-  const viewedCycle = null;
-  const isViewingHistorical = false;
-  const openNewModal = () => {};
+  const { viewedCycle, isViewingHistorical, openNewModal } = useCycles();
   const cycleId = viewedCycle?.id;
-  const basePath = "/current-cycle";
+  const basePath = isViewingHistorical && cycleId ? `/cycles/${cycleId}` : "/current-cycle";
 
   return (
     <>

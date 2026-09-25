@@ -1,10 +1,14 @@
-import AdminLayout from "./Layout/AdminLayout"
+import AdminLayout from "./Layout/AdminLayout";
+import { CycleProvider } from "./Cycles/Context/CycleContext";
+
 const AdminPanel = () => {
   return (
-    <main>
-      <AdminLayout />
-    </main>
-  )
-}
+    <CycleProvider>
+      <main>
+        <AdminLayout />
+      </main>
+    </CycleProvider>
+  );
+};
 
-export default AdminPanel
+export default AdminPanel;

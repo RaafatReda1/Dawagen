@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { Plus, History } from "lucide-react";
+import { useCycles } from "../../Cycles/Context/CycleContext";
 import styles from "./Header.module.css";
 
 const HeaderCycleButtons = () => {
   const navigate = useNavigate();
-  const openNewModal = () => {};
+  const { openNewModal } = useCycles();
 
   return (
     <div className={styles.cycleActions}>

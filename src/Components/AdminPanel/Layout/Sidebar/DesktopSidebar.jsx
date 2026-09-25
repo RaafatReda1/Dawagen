@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useCycles } from "../../Cycles/Context/CycleContext";
 import { getGeneralNavItems, getCycleNavItems } from "./navConfig";
 import CycleNavHeader from "./CycleNavHeader";
 import NavSection from "./NavSection";
@@ -8,10 +9,9 @@ import styles from "./Sidebar.module.css";
 
 const DesktopSidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const viewedCycle = null;
-  const isViewingHistorical = false;
+  const { viewedCycle, isViewingHistorical } = useCycles();
   const cycleId = viewedCycle?.id;
-  const basePath = "/current-cycle";
+  const basePath = isViewingHistorical && cycleId ? `/cycles/${cycleId}` : "/current-cycle";
 
   return (
     <div className={`${styles.pill} ${collapsed ? styles.pillCollapsed : ""}`}>
