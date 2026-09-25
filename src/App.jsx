@@ -5,11 +5,15 @@ import supabase from "./utils/supabase";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import AdminPanel from "./Components/AdminPanel/AdminPanel";
 import { SessionContext } from "./utils/context";
+import useCycleDetails from "./hooks/useCycleDetails";
 function App() {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const {rawData, metrics, error} = useCycleDetails(8);
   useEffect(() => {
+    console.log("rawData", rawData);
+    console.log("metrics", metrics);
+    console.log("error", error);
     let mounted = true;
 
     supabase.auth.getSession().then(({ data }) => {
@@ -30,7 +34,7 @@ function App() {
       mounted = false;
       subscription.unsubscribe();
     };
-  }, []);
+  }, [rawData, metrics, error]);
 
   if (loading) {
     return (

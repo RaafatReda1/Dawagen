@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { fetchActiveCycle, fetchAllCycles, fetchCycleById, createCycleInDb } from "../services/cycleService";
+import { fetchFullCycleRawData, calculateCycleMetrics } from "../services/cycleOperations";
 
 const CycleContext = createContext();
 
@@ -8,12 +9,49 @@ export const CycleProvider = ({ children }) => {
   const [cycles, setCycles] = useState([]);
   const [activeCycle, setActiveCycle] = useState(null);
   const [selectedCycle, setSelectedCycle] = useState(null);
+
+  // Deep cycle details stored in context
+  const [rawCycleData, setRawCycleData] = useState(null);
+  const [cycleMetrics, setCycleMetrics] = useState(null);
+  const [loadingDetails, setLoadingDetails] = useState(false);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [notFound, setNotFound] = useState(false);
 
   const openNewModal = () => setIsNewModalOpen(true);
   const closeNewModal = () => setIsNewModalOpen(false);
+
+  // Load deep full raw data for all tables of a cycle and calculate metrics
+  const loadCycleFullDetails = useCallback(async (targetCycleId) => {
+    if (!targetCycleId) {
+      setRawCycleData(null);
+      setCycleMetrics(null);
+      return null;
+    }
+
+    setLoadingDetails(true);
+    try {
+      const raw = await fetchFullCycleRawData(targetCycleId);
+      if (raw) {
+        const calculated = calculateCycleMetrics(raw);
+        setRawCycleData(raw);
+        setCycleMetrics(calculated);
+        return { raw, calculated };
+      } else {
+        setRawCycleData(null);
+        setCycleMetrics(null);
+        return null;
+      }
+    } catch (err) {
+      console.error(`Failed to load full cycle details for #${targetCycleId}:`, err);
+      setRawCycleData(null);
+      setCycleMetrics(null);
+      return null;
+    } finally {
+      setLoadingDetails(false);
+    }
+  }, []);
 
   const loadInitialData = useCallback(async () => {
     setLoading(true);
@@ -25,12 +63,17 @@ export const CycleProvider = ({ children }) => {
       ]);
       setActiveCycle(active);
       setCycles(allList);
+
+      if (active?.id) {
+        setSelectedCycle(active);
+        await loadCycleFullDetails(active.id);
+      }
     } catch (err) {
       setError(err.message || "فشل في تحميل بيانات الدورات");
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [loadCycleFullDetails]);
 
   useEffect(() => {
     loadInitialData();
@@ -42,14 +85,19 @@ export const CycleProvider = ({ children }) => {
       setError(null);
       if (!cycleRef) {
         setSelectedCycle(activeCycle);
+        if (activeCycle?.id) {
+          await loadCycleFullDetails(activeCycle.id);
+        }
         return activeCycle;
       }
 
       const match = cycles.find(
         (c) => String(c.id) === String(cycleRef) || String(c.cycle_number) === String(cycleRef)
       );
+
       if (match) {
         setSelectedCycle(match);
+        await loadCycleFullDetails(match.id);
         return match;
       }
 
@@ -57,9 +105,12 @@ export const CycleProvider = ({ children }) => {
         const fetched = await fetchCycleById(cycleRef);
         if (fetched) {
           setSelectedCycle(fetched);
+          await loadCycleFullDetails(fetched.id);
           return fetched;
         } else {
           setSelectedCycle(null);
+          setRawCycleData(null);
+          setCycleMetrics(null);
           setNotFound(true);
           setError(`الدورة رقم #${cycleRef} غير مسجلة بالنظام.`);
           return null;
@@ -67,12 +118,14 @@ export const CycleProvider = ({ children }) => {
       } catch (err) {
         console.error(`Failed to fetch cycle #${cycleRef}:`, err);
         setSelectedCycle(null);
+        setRawCycleData(null);
+        setCycleMetrics(null);
         setNotFound(true);
         setError(`خطأ أثناء جلب بيانات الدورة #${cycleRef}`);
         return null;
       }
     },
-    [activeCycle, cycles]
+    [activeCycle, cycles, loadCycleFullDetails]
   );
 
   const createCycle = async (cycleData) => {
@@ -83,6 +136,7 @@ export const CycleProvider = ({ children }) => {
       setSelectedCycle(created);
       setCycles((prev) => [created, ...prev]);
       setIsNewModalOpen(false);
+      await loadCycleFullDetails(created.id);
       return created;
     } catch (err) {
       console.error("Failed to create cycle in DB:", err);
@@ -100,11 +154,15 @@ export const CycleProvider = ({ children }) => {
         createCycle,
         activeCycle,
         selectedCycle,
+        rawCycleData,
+        cycleMetrics,
+        loadingDetails,
         cycles,
         loading,
         error,
         notFound,
         selectCycleByRef,
+        loadCycleFullDetails,
         reloadCycles: loadInitialData,
       }}
     >
