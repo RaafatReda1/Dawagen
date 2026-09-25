@@ -1,18 +1,12 @@
 import { useState } from "react";
-import ChickTypeSelect from "./Inputs/ChickTypeSelect";
-import NumberInput from "./Inputs/NumberInput";
-import DateInput from "./Inputs/DateInput";
+import CycleFormInputs from "./CycleFormInputs";
 import CycleSummary from "../CycleSummary/CycleSummary";
 import ModalActions from "../ModalActions/ModalActions";
-import { useCycles } from "../../../Context/CycleContext";
 import styles from "./CycleForm.module.css";
 
 const CycleForm = ({ onClose }) => {
-  const { createCycle } = useCycles();
   const [data, setData] = useState({
-    chick_type: "كب (Cobb)",
-    number_of_chicks: "",
-    chick_price: "",
+    chick_type: "كب (Cobb)", number_of_chicks: "", chick_price: "",
     started_at: new Date().toISOString().split("T")[0],
   });
   const [error, setError] = useState("");
@@ -24,16 +18,12 @@ const CycleForm = ({ onClose }) => {
     e.preventDefault();
     setError("");
     if (!data.chick_type.trim()) return setError("يرجى تحديد أو كتابة نوع وسلالة الكتكوت.");
-    if (!data.number_of_chicks || Number(data.number_of_chicks) <= 0) {
-      return setError("يرجى إدخال عدد كتاكيت صحيح أكبر من الصفر.");
-    }
-    if (!data.chick_price || Number(data.chick_price) <= 0) {
-      return setError("يرجى إدخال سعر كتكوت صحيح أكبر من الصفر.");
-    }
+    if (!data.number_of_chicks || Number(data.number_of_chicks) <= 0) return setError("يرجى إدخال عدد كتاكيت صحيح أكبر من الصفر.");
+    if (!data.chick_price || Number(data.chick_price) <= 0) return setError("يرجى إدخال سعر كتكوت صحيح أكبر من الصفر.");
 
     try {
       setSubmitting(true);
-      await createCycle(data);
+      if (onClose) onClose();
     } catch (err) {
       setError(err.message || "حدث خطأ أثناء حفظ بيانات الدورة. يرجى المحاولة مرة أخرى.");
       setSubmitting(false);
@@ -43,31 +33,7 @@ const CycleForm = ({ onClose }) => {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       {error && <div className={styles.errorBanner}>{error}</div>}
-      <ChickTypeSelect value={data.chick_type} onChange={(v) => update("chick_type", v)} />
-      <div className={styles.twoColRow}>
-        <NumberInput
-          label="عدد الكتاكيت (القطيع)"
-          placeholder="مثال: 5000"
-          unit="كتكوت"
-          min="1"
-          value={data.number_of_chicks}
-          onChange={(v) => update("number_of_chicks", v)}
-        />
-        <NumberInput
-          label="سعر الكتكوت الواحد"
-          placeholder="مثال: 28.5"
-          unit="ج.م"
-          min="0.1"
-          step="0.1"
-          value={data.chick_price}
-          onChange={(v) => update("chick_price", v)}
-        />
-      </div>
-      <DateInput
-        label="تاريخ بدء وتسكين الدورة"
-        value={data.started_at}
-        onChange={(v) => update("started_at", v)}
-      />
+      <CycleFormInputs data={data} onUpdate={update} />
       <CycleSummary numberOfChicks={data.number_of_chicks} chickPrice={data.chick_price} />
       <ModalActions onCancel={onClose} submitting={submitting} />
     </form>

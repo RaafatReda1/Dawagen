@@ -45,11 +45,13 @@ CREATE TABLE public.Events (
   id bigint GENERATED ALWAYS AS IDENTITY NOT NULL,
   created_at timestamp with time zone NOT NULL DEFAULT now(),
   parent_day_id bigint,
-  deaths numeric,
   temperature_inside real,
   performed_by bigint,
+  deaths jsonb,
+  death_reason bigint,
   CONSTRAINT Events_pkey PRIMARY KEY (id),
-  CONSTRAINT Events_parent_day_id_fkey FOREIGN KEY (parent_day_id) REFERENCES public.Days(id)
+  CONSTRAINT Events_parent_day_id_fkey FOREIGN KEY (parent_day_id) REFERENCES public.Days(id),
+  CONSTRAINT Events_death_reason_fkey FOREIGN KEY (death_reason) REFERENCES public.Diseases(id)
 );
 CREATE TABLE public.DailyExpenses (
   id bigint GENERATED ALWAYS AS IDENTITY NOT NULL,
@@ -68,10 +70,11 @@ CREATE TABLE public.DrugWithdraw (
   drug_id bigint,
   packages_count numeric,
   consumed_capacity real,
-  measure_sign text,
+  disease_id integer,
   CONSTRAINT DrugWithdraw_pkey PRIMARY KEY (id),
   CONSTRAINT DrugWithdraw_parent_event_id_fkey FOREIGN KEY (parent_event_id) REFERENCES public.Events(id),
-  CONSTRAINT DrugWithdraw_drug_id_fkey FOREIGN KEY (drug_id) REFERENCES public.Medicine(id)
+  CONSTRAINT DrugWithdraw_drug_id_fkey FOREIGN KEY (drug_id) REFERENCES public.Medicine(id),
+  CONSTRAINT DrugWithdraw_disease_id_fkey FOREIGN KEY (disease_id) REFERENCES public.Diseases(id)
 );
 CREATE TABLE public.FoodWithdraw (
   id bigint GENERATED ALWAYS AS IDENTITY NOT NULL,
@@ -100,9 +103,11 @@ CREATE TABLE public.MedicineInvoices (
   cycle_id bigint,
   total_price double precision,
   payments jsonb,
+  disease_id bigint,
   CONSTRAINT MedicineInvoices_pkey PRIMARY KEY (id),
   CONSTRAINT MedicineInvoices_supplier_id_fkey FOREIGN KEY (supplier_id) REFERENCES public.MedicineSuppliers(id),
-  CONSTRAINT MedicineInvoices_cycle_id_fkey FOREIGN KEY (cycle_id) REFERENCES public.Cycles(id)
+  CONSTRAINT MedicineInvoices_cycle_id_fkey FOREIGN KEY (cycle_id) REFERENCES public.Cycles(id),
+  CONSTRAINT MedicineInvoices_disease_id_fkey FOREIGN KEY (disease_id) REFERENCES public.Diseases(id)
 );
 CREATE TABLE public.Medicine (
   id bigint GENERATED ALWAYS AS IDENTITY NOT NULL,
@@ -164,4 +169,19 @@ CREATE TABLE public.FarmSales (
   CONSTRAINT FarmSales_pkey PRIMARY KEY (id),
   CONSTRAINT FarmSales_cycle_id_fkey FOREIGN KEY (cycle_id) REFERENCES public.Cycles(id),
   CONSTRAINT FarmSales_importer_id_fkey FOREIGN KEY (importer_id) REFERENCES public.Importers(id)
+);
+CREATE TABLE public.Diseases (
+  id bigint GENERATED ALWAYS AS IDENTITY NOT NULL,
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  name text,
+  cuase text,
+  doctors jsonb,
+  resistance_culture_result jsonb,
+  drug_of_choice1 bigint,
+  drug_of_choice2 bigint,
+  drug_of_choice3 bigint,
+  CONSTRAINT Diseases_pkey PRIMARY KEY (id),
+  CONSTRAINT Diseases_drug_of_choice1_fkey FOREIGN KEY (drug_of_choice1) REFERENCES public.Medicine(id),
+  CONSTRAINT Diseases_drug_of_choice2_fkey FOREIGN KEY (drug_of_choice2) REFERENCES public.Medicine(id),
+  CONSTRAINT Diseases_drug_of_choice3_fkey FOREIGN KEY (drug_of_choice3) REFERENCES public.Medicine(id)
 );
