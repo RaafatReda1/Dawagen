@@ -1,0 +1,17 @@
+.cardContainer {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  font-family: var(--font-primary, system-ui, -apple-system, sans-serif);
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.cardContainer:hover {
+  box-shadow: 0 10px 24px rgba(31, 110, 86, 0.12);
+  transform: translateY(-2px);
+}

@@ -1,0 +1,86 @@
+.banner {
+  background: linear-gradient(135deg, #1f6e56 0%, #175442 100%);
+  border-radius: 18px;
+  padding: 18px 16px;
+  margin: 0 16px 14px 16px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 12px;
+}
+
+.donutWrapper {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.donutSvg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.donutBg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.15);
+  stroke-width: 6;
+}
+
+.donutFill {
+  fill: none;
+  stroke: #34d399;
+  stroke-width: 6;
+  stroke-dasharray: 220;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s ease;
+}
+
+.donutContent {
+  position: absolute;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.donutLabel {
+  font-size: 0.65rem;
+  opacity: 0.85;
+}
+
+.donutValue {
+  font-size: 0.85rem;
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+.statBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+}
+
+.iconCircle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.statLabel {
+  font-size: 0.72rem;
+  opacity: 0.9;
+}
+
+.statValue {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
