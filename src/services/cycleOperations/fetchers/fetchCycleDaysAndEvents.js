@@ -1,13 +1,21 @@
 import supabase from "../../../utils/supabase";
 
 /**
- * Fetches Days, FollowUpData, Events, DailyExpenses, DrugWithdraw, and FoodWithdraw records
+ * Fetches Days, FollowUpData, MetaData, Events, DailyExpenses, DrugWithdraw, and FoodWithdraw records
  * for a specific cycleId.
  */
 export const fetchCycleDaysAndEvents = async (cycleId) => {
   const numericId = Number(cycleId);
   if (isNaN(numericId)) {
-    return { days: [], events: [], dailyExpenses: [], drugWithdrawals: [], foodWithdrawals: [], followUpData: [] };
+    return {
+      days: [],
+      metaData: [],
+      events: [],
+      dailyExpenses: [],
+      drugWithdrawals: [],
+      foodWithdrawals: [],
+      followUpData: [],
+    };
   }
 
   const { data: days, error: daysErr } = await supabase
@@ -18,25 +26,44 @@ export const fetchCycleDaysAndEvents = async (cycleId) => {
 
   if (daysErr) throw daysErr;
   if (!days || days.length === 0) {
-    return { days: [], events: [], dailyExpenses: [], drugWithdrawals: [], foodWithdrawals: [], followUpData: [] };
+    return {
+      days: [],
+      metaData: [],
+      events: [],
+      dailyExpenses: [],
+      drugWithdrawals: [],
+      foodWithdrawals: [],
+      followUpData: [],
+    };
   }
 
   const dayIds = days.map((d) => d.id);
 
-  // Fetch Day-child tables (Events, FollowUpData)
-  const [eventsRes, followUpRes] = await Promise.all([
+  // Fetch Day-child tables (Events, FollowUpData, MetaData)
+  const [eventsRes, followUpRes, metaDataRes] = await Promise.all([
     supabase.from("Events").select("*").in("parent_day_id", dayIds),
     supabase.from("FollowUpData").select("*").in("parent_day_id", dayIds),
+    supabase.from("MetaData").select("*").in("parent_day_id", dayIds),
   ]);
 
   if (eventsRes.error) throw eventsRes.error;
   if (followUpRes.error) throw followUpRes.error;
+  if (metaDataRes.error) throw metaDataRes.error;
 
   const events = eventsRes.data || [];
   const followUpData = followUpRes.data || [];
+  const metaData = metaDataRes.data || [];
 
   if (events.length === 0) {
-    return { days, events: [], dailyExpenses: [], drugWithdrawals: [], foodWithdrawals: [], followUpData };
+    return {
+      days,
+      metaData,
+      events: [],
+      dailyExpenses: [],
+      drugWithdrawals: [],
+      foodWithdrawals: [],
+      followUpData,
+    };
   }
 
   const eventIds = events.map((e) => e.id);
@@ -54,6 +81,7 @@ export const fetchCycleDaysAndEvents = async (cycleId) => {
 
   return {
     days,
+    metaData,
     events,
     dailyExpenses: expensesRes.data || [],
     drugWithdrawals: drugWRes.data || [],
