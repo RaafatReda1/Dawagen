@@ -1,4 +1,5 @@
 import supabase from "../utils/supabase";
+
 // THIS FILE HANDLES SUPABASE REQUESTS FOR CYCLES TABLE
 export const fetchActiveCycle = async () => {
   const { data, error } = await supabase
@@ -26,6 +27,11 @@ export const fetchAllCycles = async () => {
 export const fetchCycleById = async (id) => {
   if (!id) return null;
   const numericId = Number(id);
+
+  if (isNaN(numericId)) {
+    const isUuid = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(String(id));
+    if (!isUuid) return null;
+  }
 
   let query = supabase.from("Cycles").select("*");
   if (!isNaN(numericId)) {

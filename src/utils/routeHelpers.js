@@ -11,14 +11,19 @@ export const parseCycleRoute = (pathname = "", params = {}) => {
     }
   }
 
-  if (cycleRef === "current-cycle" || cycleRef === "current") {
-    cycleRef = null;
-  } else if (typeof cycleRef === "string") {
-    const cleaned = cycleRef.replace(/^(current-|cycle-|cycles-)/i, "");
-    if (cleaned && cleaned !== "current" && cleaned !== "cycle") {
+  if (typeof cycleRef === "string") {
+    const cleaned = cycleRef.replace(/^(current-|cycle-|cycles-)/i, "").trim();
+    if (!cleaned || cleaned === "current" || cleaned === "cycle" || cleaned === "cycles") {
+      cycleRef = null;
+    } else {
       cycleRef = cleaned;
     }
   }
+
+  const parts = pathname.split("/").filter(Boolean);
+  const lastPart = parts[parts.length - 1];
+  const knownTabs = ["feed", "drugs", "export", "overview"];
+  const tab = knownTabs.includes(lastPart) ? lastPart : "";
 
   const isCurrentCycle =
     pathname.startsWith("/current-cycle") ||
@@ -31,6 +36,7 @@ export const parseCycleRoute = (pathname = "", params = {}) => {
     isCurrentCycle,
     isHistorical,
     basePath,
+    tab,
     displayTitle: isHistorical ? `دورة #${cycleRef}` : "الدورة الحالية",
   };
 };
