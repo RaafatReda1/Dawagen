@@ -8,8 +8,9 @@ import ProfitLossFooter from "./Components/ProfitLossFooter/ProfitLossFooter";
 import ActionButton from "./Components/ActionButton/ActionButton";
 import styles from "./CycleCard.module.css";
 
-const CycleCard = ({ cycle }) => {
-  const { metrics } = useCycleDetails(cycle?.id);
+const CycleCard = ({ cycle, metrics: precalculatedMetrics }) => {
+  const { metrics: hookMetrics } = useCycleDetails(!precalculatedMetrics ? cycle?.id : null);
+  const metrics = precalculatedMetrics || hookMetrics;
 
   const cycleNumber = cycle?.id || 1;
   const chickType = cycle?.chick_type || "Cobb 500";
@@ -18,11 +19,11 @@ const CycleCard = ({ cycle }) => {
   const isActive = cycle?.is_active ?? false;
   const durationDays = 43;
 
-  const totalRevenue = metrics?.cards?.totalSalesRevenue ?? 90000;
-  const totalExpenses = metrics?.cards?.totalCycleCost ?? 60000;
-  const netProfitLoss = metrics?.cards?.netProfitLoss ?? 30000;
-  const receivablesOwed = metrics?.cards?.receivablesOwed ?? 50000;
-  const debtsOwed = metrics?.cards?.debtsOwed ?? 30000;
+  const totalRevenue = metrics?.cards?.totalSalesRevenue ?? 0;
+  const totalExpenses = metrics?.cards?.totalCycleCost ?? 0;
+  const netProfitLoss = metrics?.cards?.netProfitLoss ?? 0;
+  const receivablesOwed = metrics?.cards?.receivablesOwed ?? 0;
+  const debtsOwed = metrics?.cards?.debtsOwed ?? 0;
 
   return (
     <div className={styles.cardContainer}>
