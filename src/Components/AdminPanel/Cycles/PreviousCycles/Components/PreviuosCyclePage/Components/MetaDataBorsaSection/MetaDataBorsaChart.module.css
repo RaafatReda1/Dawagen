@@ -1,0 +1,19 @@
+.card {
+  background: var(--color-bg-card, #ffffff);
+  border-radius: 18px;
+  border: 1px solid var(--color-border, #e5e7eb);
+  padding: 18px;
+  margin-bottom: 20px;
+}
+
+.header {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.chartContainer {
+  height: 180px;
+  width: 100%;
+}

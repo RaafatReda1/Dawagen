@@ -8,7 +8,7 @@ import ProfitLossFooter from "./Components/ProfitLossFooter/ProfitLossFooter";
 import ActionButton from "./Components/ActionButton/ActionButton";
 import styles from "./CycleCard.module.css";
 
-const CycleCard = ({ cycle, metrics: precalculatedMetrics }) => {
+const CycleCard = ({ cycle, metrics: precalculatedMetrics, onSelect }) => {
   const { metrics: hookMetrics } = useCycleDetails(!precalculatedMetrics ? cycle?.id : null);
   const metrics = precalculatedMetrics || hookMetrics;
 
@@ -32,7 +32,7 @@ const CycleCard = ({ cycle, metrics: precalculatedMetrics }) => {
       <FinancialDetails totalRevenue={totalRevenue} totalExpenses={totalExpenses} netProfitLoss={netProfitLoss} />
       <ReceivablesSection receivablesOwed={receivablesOwed} debtsOwed={debtsOwed} />
       <ProfitLossFooter netProfitLoss={netProfitLoss} />
-      <ActionButton cycleId={cycleNumber} />
+      <ActionButton cycleId={cycleNumber} onSelect={onSelect} />
     </div>
   );
 };

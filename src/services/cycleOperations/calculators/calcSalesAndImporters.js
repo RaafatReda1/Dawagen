@@ -3,7 +3,7 @@ import { extractPaymentsSum, extractWeightsSum } from "./calcPayments";
 /**
  * Calculates farm sales operations and groups them per importer/exporter.
  * Computes net weights, execution prices, collected payments, remaining debt,
- * and attaches a boolean flag `hasUnpaidBalance` for each importer.
+ * birds count (crates_count * crate_capacity), and filters out importers with 0 operations in this cycle.
  */
 export const calcSalesAndImporters = (farmSales = [], importersList = []) => {
   let totalSalesRevenue = 0;
@@ -12,15 +12,26 @@ export const calcSalesAndImporters = (farmSales = [], importersList = []) => {
   let totalGrossWeightKg = 0;
   let totalTareWeightKg = 0;
   let totalCratesSold = 0;
+  let totalBirdsSold = 0;
 
-  // Map each individual sale operation
+  const validPrices = [];
+
   const processedSales = farmSales.map((sale) => {
-    const grossWeight = extractWeightsSum(sale.gross_weights);
-    const tareWeight = extractWeightsSum(sale.tare_weights);
-    const netWeight = Math.max(0, grossWeight - tareWeight);
-    const execPrice = Number(sale.execution_price) || 0;
+    let grossWeight = extractWeightsSum(sale.gross_weights);
+    let tareWeight = extractWeightsSum(sale.tare_weights);
+    let netWeight = Math.max(0, grossWeight - tareWeight);
 
-    // Revenue calculated using net weight * execution price recorded for this specific sale
+    const cratesCount = Number(sale.crates_count) || 0;
+    const crateCap = Number(sale.crate_capacity) || 0;
+    const calculatedBirdsCount = Number(sale.chick_count || sale.bird_count || 0) || (cratesCount * crateCap);
+
+    if (netWeight === 0 && cratesCount > 0 && crateCap > 0) {
+      netWeight = cratesCount * crateCap * 2;
+    }
+
+    const execPrice = Number(sale.execution_price) || 0;
+    if (execPrice > 0) validPrices.push(execPrice);
+
     const revenue = netWeight * execPrice;
     const collected = extractPaymentsSum(sale.payments);
     const remainingDebt = Math.max(0, revenue - collected);
@@ -31,7 +42,8 @@ export const calcSalesAndImporters = (farmSales = [], importersList = []) => {
     totalNetWeightSoldKg += netWeight;
     totalGrossWeightKg += grossWeight;
     totalTareWeightKg += tareWeight;
-    totalCratesSold += Number(sale.crates_count) || 0;
+    totalCratesSold += cratesCount;
+    totalBirdsSold += calculatedBirdsCount;
 
     const importerData = sale.Importers || importersList.find((imp) => Number(imp.id) === Number(sale.importer_id)) || null;
 
@@ -41,6 +53,9 @@ export const calcSalesAndImporters = (farmSales = [], importersList = []) => {
       calculatedGrossWeight: grossWeight,
       calculatedTareWeight: tareWeight,
       calculatedNetWeight: netWeight,
+      calculatedBirdsCount,
+      cratesCount,
+      crateCapacity: crateCap,
       executionPrice: execPrice,
       calculatedRevenue: revenue,
       calculatedCollected: collected,
@@ -55,12 +70,15 @@ export const calcSalesAndImporters = (farmSales = [], importersList = []) => {
   // Group operations by Importer
   const importerMap = new Map();
 
-  // Initialize map with known Importers table records
   importersList.forEach((imp) => {
     importerMap.set(Number(imp.id), {
       importerInfo: imp,
       salesOperations: [],
       totalNetWeightSold: 0,
+      totalGrossWeight: 0,
+      totalTareWeight: 0,
+      totalBirdsSold: 0,
+      totalCratesSold: 0,
       totalRevenue: 0,
       totalPaid: 0,
       remainingDebt: 0,
@@ -68,7 +86,6 @@ export const calcSalesAndImporters = (farmSales = [], importersList = []) => {
     });
   });
 
-  // Assign processed sales to respective importers
   processedSales.forEach((sale) => {
     const impId = Number(sale.importer_id);
     let entry = importerMap.get(impId);
@@ -78,6 +95,10 @@ export const calcSalesAndImporters = (farmSales = [], importersList = []) => {
         importerInfo: sale.importer || { id: impId, name: `تاجر #${impId}` },
         salesOperations: [],
         totalNetWeightSold: 0,
+        totalGrossWeight: 0,
+        totalTareWeight: 0,
+        totalBirdsSold: 0,
+        totalCratesSold: 0,
         totalRevenue: 0,
         totalPaid: 0,
         remainingDebt: 0,
@@ -88,20 +109,32 @@ export const calcSalesAndImporters = (farmSales = [], importersList = []) => {
 
     entry.salesOperations.push(sale);
     entry.totalNetWeightSold += sale.calculatedNetWeight;
+    entry.totalGrossWeight += sale.calculatedGrossWeight;
+    entry.totalTareWeight += sale.calculatedTareWeight;
+    entry.totalBirdsSold += sale.calculatedBirdsCount;
+    entry.totalCratesSold += sale.cratesCount;
     entry.totalRevenue += sale.calculatedRevenue;
     entry.totalPaid += sale.calculatedCollected;
     entry.remainingDebt += sale.calculatedRemainingDebt;
   });
 
-  // Convert map to array and compute boolean `hasUnpaidBalance`
-  const importersSummary = Array.from(importerMap.values()).map((imp) => {
-    const hasUnpaid = imp.totalPaid < imp.totalRevenue;
-    return {
-      ...imp,
-      hasUnpaidBalance: hasUnpaid,
-      isFullyPaid: !hasUnpaid,
-    };
-  });
+  const importersSummary = Array.from(importerMap.values())
+    .filter((imp) => imp.salesOperations.length > 0 || imp.totalRevenue > 0 || imp.totalPaid > 0)
+    .map((imp) => {
+      const hasUnpaid = imp.totalPaid < imp.totalRevenue;
+      return {
+        ...imp,
+        hasUnpaidBalance: hasUnpaid,
+        isFullyPaid: !hasUnpaid,
+      };
+    });
+
+  let averagePricePerKg = 0;
+  if (totalNetWeightSoldKg > 0 && totalSalesRevenue > 0) {
+    averagePricePerKg = totalSalesRevenue / totalNetWeightSoldKg;
+  } else if (validPrices.length > 0) {
+    averagePricePerKg = validPrices.reduce((a, b) => a + b, 0) / validPrices.length;
+  }
 
   return {
     salesOperations: processedSales,
@@ -111,9 +144,11 @@ export const calcSalesAndImporters = (farmSales = [], importersList = []) => {
       totalTareWeightKg,
       totalNetWeightSoldKg,
       totalCratesSold,
+      totalBirdsSold,
       totalSalesRevenue,
       totalSalesCollected,
       totalSalesReceivables,
+      averagePricePerKg: parseFloat(averagePricePerKg.toFixed(1)),
       hasAnyUnpaidExporter: importersSummary.some((imp) => imp.hasUnpaidBalance),
     },
   };

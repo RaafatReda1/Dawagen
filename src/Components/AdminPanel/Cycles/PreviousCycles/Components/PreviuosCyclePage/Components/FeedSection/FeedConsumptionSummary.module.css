@@ -1,0 +1,78 @@
+.card {
+  background: var(--color-bg-card, #ffffff);
+  border-radius: 18px;
+  border: 1px solid var(--color-border, #e5e7eb);
+  padding: 18px;
+  margin-bottom: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.tabToggle {
+  display: flex;
+  background: #f3f4f6;
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.tabBtn {
+  border: none;
+  background: transparent;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #6b7280;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.tabActive {
+  border: none;
+  background: #ffffff;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #1f6e56;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.statBox {
+  background: #f9fafb;
+  border: 1px solid #f3f4f6;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.statVal {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1f6e56;
+  margin-top: 2px;
+}
+
+.chartContainer {
+  height: 180px;
+  width: 100%;
+}

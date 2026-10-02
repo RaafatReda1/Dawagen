@@ -8,7 +8,7 @@ const CycleLoader = ({ progress = 0, stepMessage = "جاري التحميل..." 
       <div className={styles.iconPulseBox}>
         <Bird size={34} />
       </div>
-      <h3 className={styles.title}>داوجن — معالج البيانات والتحليلات</h3>
+      <h3 className={styles.title}>دواجن — معالج البيانات والتحليلات</h3>
       <p className={styles.subtitle}>يتم قراءة وحساب كافة المعاملات والمدفوعات والمبيعات لجميع الدورات</p>
 
       <div className={styles.progressTrack}>

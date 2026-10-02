@@ -212,6 +212,7 @@ export const calculateCycleMetrics = (rawData) => {
       totalTareWeightKg: salesAndImportersResult.totals.totalTareWeightKg,
       totalNetWeightSoldKg: salesAndImportersResult.totals.totalNetWeightSoldKg,
       totalCratesSold: salesAndImportersResult.totals.totalCratesSold,
+      averagePricePerKg: salesAndImportersResult.totals.averagePricePerKg,
       salesOperations: salesAndImportersResult.salesOperations,
       importersList: salesAndImportersResult.importersList,
       hasAnyUnpaidExporter: salesAndImportersResult.totals.hasAnyUnpaidExporter,

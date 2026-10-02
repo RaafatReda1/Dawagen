@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { History } from "lucide-react";
 import useCyclesPageLoader from "../../../../hooks/useCyclesPageLoader";
 import CycleCard from "./Components/CycleCard/CycleCard";
 import CycleLoader from "./Components/CycleLoader/CycleLoader";
+import PreviuosCyclePage from "./Components/PreviuosCyclePage/PreviuosCyclePage";
 
 const PreviousCycles = () => {
+  const [selectedCycleId, setSelectedCycleId] = useState(null);
   const { isLoading, progress, stepMessage, cycles, allMetricsMap } = useCyclesPageLoader();
 
   if (isLoading) {
     return <CycleLoader progress={progress} stepMessage={stepMessage} />;
+  }
+
+  if (selectedCycleId) {
+    return <PreviuosCyclePage cycleId={selectedCycleId} onBack={() => setSelectedCycleId(null)} />;
   }
 
   return (
@@ -25,7 +31,7 @@ const PreviousCycles = () => {
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: "24px" }}>
         {cycles.map((cycle) => (
-          <CycleCard key={cycle.id} cycle={cycle} metrics={allMetricsMap[cycle.id]} />
+          <CycleCard key={cycle.id} cycle={cycle} metrics={allMetricsMap[cycle.id]} onSelect={(id) => setSelectedCycleId(id)} />
         ))}
       </div>
     </div>

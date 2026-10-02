@@ -1,0 +1,62 @@
+.phoneContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.phoneGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.phoneNum {
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  margin-left: 4px;
+  direction: ltr;
+}
+
+.callBtn {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.callBtn:hover {
+  background: #dbeafe;
+}
+
+.waBtn {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.waBtn:hover {
+  background: #dcfce7;
+}

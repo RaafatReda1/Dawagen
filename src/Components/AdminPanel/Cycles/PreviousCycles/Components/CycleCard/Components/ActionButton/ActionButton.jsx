@@ -1,14 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import styles from "./ActionButton.module.css";
 
-const ActionButton = ({ cycleId }) => {
+const ActionButton = ({ cycleId, onSelect }) => {
   return (
-    <Link to={`/cycle-${cycleId}`} className={styles.button}>
+    <button onClick={() => onSelect && onSelect(cycleId)} className={styles.button}>
       <ArrowLeft size={18} />
       <span>عرض تفاصيل الدورة</span>
-    </Link>
+    </button>
   );
 };
 

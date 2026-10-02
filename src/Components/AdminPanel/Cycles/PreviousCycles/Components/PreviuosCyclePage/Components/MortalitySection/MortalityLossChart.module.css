@@ -1,0 +1,36 @@
+.card {
+  background: var(--color-bg-card, #ffffff);
+  border-radius: 18px;
+  border: 1px solid var(--color-border, #e5e7eb);
+  padding: 18px;
+  margin-bottom: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.lossSummary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  padding: 10px 16px;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #991b1b;
+}
+
+.chartContainer {
+  height: 180px;
+  width: 100%;
+}

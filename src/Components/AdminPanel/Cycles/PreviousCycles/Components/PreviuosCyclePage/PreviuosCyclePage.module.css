@@ -1,0 +1,13 @@
+.pageContainer {
+  padding: 10px 0;
+  font-family: var(--font-primary, system-ui, -apple-system, sans-serif);
+  color: var(--color-text-primary, #111827);
+  direction: rtl;
+}
+
+.twoColumnGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
