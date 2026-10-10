@@ -25,8 +25,8 @@ const PreviuosCyclePage = ({ cycleId, onBack }) => {
 
   return (
     <div className={styles.pageContainer}>
-      <CyclePageHeader cycleId={cycleId} chickType={cycle.chick_type || "Cobb 500"} chicksCount={cycle.number_of_chicks || 5000} chickPrice={cycle.chick_price || 10} chickCost={metrics.chickFinancials?.chickCost || 50000} startDate={cycle.started_at ? new Date(cycle.started_at).toLocaleDateString("ar-EG") : "14/09/2026"} endDate={cycle.ended_at ? new Date(cycle.ended_at).toLocaleDateString("ar-EG") : "14/10/2026"} durationDays={30} onBack={onBack} metrics={metrics} />
-      <SalesMeatSummaryCards salesFinancials={metrics.salesFinancials} />
+      <CyclePageHeader cycleId={cycleId} chickType={cycle.chick_type || "Unknown"} chicksCount={cycle.number_of_chicks || "Undefined"} chickPrice={cycle.chick_price} chickCost={metrics.chickFinancials?.chickCost} startDate={cycle.started_at ? new Date(cycle.started_at).toLocaleDateString("ar-EG") : "Unknown"} endDate={cycle.ended_at ? new Date(cycle.ended_at).toLocaleDateString("ar-EG") : "Unknown"} durationDays={30} onBack={onBack} metrics={metrics} />
+      <SalesMeatSummaryCards salesFinancials={metrics.salesFinancials} metrics={metrics} />
       <div className={styles.twoColumnGrid}>
         <div>
           <FeedConsumptionSummary feedFinancials={metrics.feedFinancials} />

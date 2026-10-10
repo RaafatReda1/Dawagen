@@ -1,0 +1,32 @@
+.footerBar {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.track {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  display: flex;
+  overflow: hidden;
+}
+.salesFill {
+  background: linear-gradient(90deg, #10b981, #059669);
+  height: 100%;
+  transition: width 0.3s ease;
+}
+.expensesFill {
+  background: linear-gradient(90deg, #cbd5e1, #94a3b8);
+  height: 100%;
+  transition: width 0.3s ease;
+}
+.footnote {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  color: #64748b;
+}

@@ -1,0 +1,22 @@
+.container {
+  background: linear-gradient(145deg, #ffffff 0%, #f9fbf9 50%, #f0fdf4 100%);
+  border: 1.5px solid #bbf7d0;
+  border-radius: 20px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 20px -2px rgba(16, 185, 129, 0.08);
+  min-height: 340px;
+}
+.stage {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  flex: 1;
+  min-height: 200px;
+  margin-bottom: 12px;
+}
+@media (max-width: 640px) {
+  .stage { flex-direction: column; align-items: stretch; }
+}

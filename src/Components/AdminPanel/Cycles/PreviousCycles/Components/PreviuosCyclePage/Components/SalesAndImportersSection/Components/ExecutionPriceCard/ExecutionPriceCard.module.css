@@ -1,0 +1,26 @@
+.card {
+  background: var(--color-bg-card, #ffffff);
+  border-radius: 18px;
+  border: 1px solid var(--color-border, #e5e7eb);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease;
+  min-height: 155px;
+}
+.card:hover { transform: translateY(-2px); border-color: #cbd5e1; }
+.header { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.titleGroup { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 700; color: #4b5563; }
+.icon { color: #059669; }
+.badge { font-size: 0.68rem; font-weight: 700; background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; padding: 2px 7px; border-radius: 9999px; }
+.heroBlock { margin: 6px 0; }
+.priceRow { display: flex; align-items: baseline; gap: 4px; }
+.priceVal { font-size: 1.45rem; font-weight: 900; color: #059669; line-height: 1.15; }
+.unit { font-size: 0.85rem; font-weight: 700; color: #059669; }
+.subtitle { font-size: 0.68rem; color: #64748b; margin-top: 2px; }
+.collectionBar { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 5px 8px; display: flex; flex-direction: column; gap: 4px; }
+.progressRow { display: flex; align-items: center; justify-content: space-between; font-size: 0.66rem; color: #4b5563; }
+.track { height: 5px; background: #e2e8f0; border-radius: 9999px; overflow: hidden; }
+.fill { height: 100%; background: #10b981; border-radius: 9999px; transition: width 0.3s ease; }

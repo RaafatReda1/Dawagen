@@ -1,0 +1,27 @@
+.card {
+  background: var(--color-bg-card, #ffffff);
+  border-radius: 18px;
+  border: 1px solid var(--color-border, #e5e7eb);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease;
+  min-height: 155px;
+}
+.card:hover { transform: translateY(-2px); border-color: #cbd5e1; }
+.header { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.titleGroup { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 700; color: #4b5563; }
+.icon { color: #d97706; }
+.badge { font-size: 0.68rem; font-weight: 700; background: #f8fafc; color: #64748b; border: 1px solid #e2e8f0; padding: 2px 7px; border-radius: 9999px; }
+.metricsGrid { display: flex; align-items: center; justify-content: space-around; background: #f9fafb; border: 1px solid #f3f4f6; border-radius: 12px; padding: 8px 6px; margin: 6px 0; }
+.metricItem { display: flex; align-items: center; gap: 8px; }
+.iconOrange { width: 32px; height: 32px; background: #fffbeb; color: #d97706; border: 1px solid #fde68a; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+.iconGreen { width: 32px; height: 32px; background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+.numberGroup { display: flex; flex-direction: column; }
+.bigVal { font-size: 1.15rem; font-weight: 800; color: #111827; line-height: 1.15; }
+.label { font-size: 0.66rem; font-weight: 600; color: #6b7280; }
+.divider { width: 1px; height: 30px; background: #e5e7eb; }
+.kpiBar { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.kpiChip { font-size: 0.67rem; color: #4b5563; background: #f3f4f6; padding: 3px 7px; border-radius: 6px; }

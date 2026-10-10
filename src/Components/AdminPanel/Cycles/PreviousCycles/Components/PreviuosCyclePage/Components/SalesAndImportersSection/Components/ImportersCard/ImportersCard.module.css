@@ -1,0 +1,24 @@
+.card {
+  background: var(--color-bg-card, #ffffff);
+  border-radius: 18px;
+  border: 1px solid var(--color-border, #e5e7eb);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease;
+  min-height: 155px;
+}
+.card:hover { transform: translateY(-2px); border-color: #cbd5e1; }
+.header { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.titleGroup { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 700; color: #4b5563; }
+.icon { color: #2563eb; }
+.badge { font-size: 0.68rem; font-weight: 700; background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; padding: 2px 7px; border-radius: 9999px; }
+.countBlock { margin: 6px 0; }
+.bigCount { font-size: 1.35rem; font-weight: 900; color: #1d4ed8; line-height: 1.15; }
+.unit { font-size: 0.82rem; font-weight: 700; color: #3b82f6; }
+.chipsContainer { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.chip { font-size: 0.68rem; font-weight: 600; color: #1e3a8a; background: #eff6ff; border: 1px solid #bfdbfe; padding: 3px 8px; border-radius: 6px; max-width: 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.remainingChip { font-size: 0.68rem; font-weight: 700; color: #2563eb; background: #dbeafe; border: 1px solid #93c5fd; padding: 3px 7px; border-radius: 6px; cursor: help; }
+.empty { font-size: 0.72rem; color: #9ca3af; font-weight: 500; }
