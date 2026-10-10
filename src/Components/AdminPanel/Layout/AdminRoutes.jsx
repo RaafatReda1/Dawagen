@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import DashboardTab from "../Tabs/DashboardTab";
-import FeedTab from "../Tabs/FeedTab";
-import DrugsTab from "../Tabs/DrugsTab";
-import ExportTab from "../Tabs/ExportTab";
-import OverviewTab from "../Tabs/OverviewTab";
+import DashboardTab from "../Tabs/DashboardTab/DashboardTab";
+import FeedTab from "../Tabs/FeedTab/FeedTab";
+import DrugsTab from "../Tabs/DrugsTab/DrugsTab";
+import ExportTab from "../Tabs/ExportTab/ExportTab";
+import OverviewTab from "../Tabs/OverviewTab/OverviewTab";
 import PreviousCycles from "../Cycles/PreviousCycles/PreviousCycles";
 import Analytics from "../Cycles/Analytics/Analytics";
 
