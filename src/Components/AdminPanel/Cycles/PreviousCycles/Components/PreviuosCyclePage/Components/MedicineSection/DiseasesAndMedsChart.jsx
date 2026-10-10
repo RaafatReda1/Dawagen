@@ -1,32 +1,26 @@
 import React, { useState } from "react";
-import { Syringe, FileText, Printer } from "lucide-react";
+import { Syringe, FileText } from "lucide-react";
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
-import { formatEgp } from "../../../../../../../../utils/formatters";
 import InvoiceDetailsModal from "../Modals/InvoiceDetailsModal/InvoiceDetailsModal";
 import styles from "./DiseasesAndMedsChart.module.css";
 
 const DiseasesAndMedsChart = ({ medicineFinancials }) => {
   const [selectedInvoice, setSelectedInvoice] = useState(null);
   const invoices = medicineFinancials?.invoices || [];
-  const totalCost = medicineFinancials?.totalMedicineCost || 0;
-
-  const chartData = invoices.map((inv, idx) => ({
-    supplier: inv.MedicineSuppliers?.name || `مورد #${idx + 1}`,
-    cost: inv.calculatedTotal,
-  }));
+  const chartData = invoices.map((inv, idx) => ({ supplier: inv.MedicineSuppliers?.name || `مورد #${idx + 1}`, cost: inv.calculatedTotal || 0 }));
 
   return (
     <div className={styles.card}>
       <div className={styles.header}>
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}><Syringe size={20} color="#DC2626" /><span>الأمراض وفواتير العلاجات</span></div>
-        <span style={{ fontSize: "0.85rem", color: "#DC2626", fontWeight: 800 }}>إجمالي: {formatEgp(totalCost)}</span>
+        <span style={{ fontSize: "0.85rem", color: "#DC2626", fontWeight: 800 }}>إجمالي: DATA HERE!</span>
       </div>
       <div className={styles.chartBox}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={chartData}>
             <XAxis dataKey="supplier" tick={{ fontSize: 10 }} />
             <YAxis tick={{ fontSize: 10 }} />
-            <Tooltip formatter={(v) => [formatEgp(v), "قيمة الفاتورة"]} />
+            <Tooltip />
             <Bar dataKey="cost" fill="#EF4444" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
@@ -36,14 +30,10 @@ const DiseasesAndMedsChart = ({ medicineFinancials }) => {
           invoices.map((inv, idx) => (
             <div key={idx} className={styles.invoiceCard}>
               <div>
-                <div className={styles.supplierTitle}>{inv.MedicineSuppliers?.name || `صيدلية / مورد أدوية #${inv.supplier_id || idx + 1}`}</div>
-                <div className={styles.dateSub}>تاريخ: {inv.created_at ? new Date(inv.created_at).toLocaleDateString("ar-EG") : "مسجل بالدورة"} | القيمة: <strong>{formatEgp(inv.calculatedTotal)}</strong></div>
-                {inv.disease_id && <span className={styles.diseaseBadge}>علاج مرض مسجل</span>}
+                <div className={styles.supplierTitle}>{inv.MedicineSuppliers?.name || `صيدلية #${idx + 1}`}</div>
+                <div className={styles.dateSub}>القيمة: <strong>DATA HERE!</strong></div>
               </div>
-              <div className={styles.actions}>
-                <button onClick={() => setSelectedInvoice(inv)} className={styles.btnDetail}><FileText size={14} /><span>تفاصيل الفاتورة</span></button>
-                <button onClick={() => { setSelectedInvoice(inv); setTimeout(() => window.print(), 300); }} className={styles.btnPdf}><Printer size={14} /><span>PDF / طباعة</span></button>
-              </div>
+              <button onClick={() => setSelectedInvoice(inv)} className={styles.btnDetail}><FileText size={14} /><span>تفاصيل</span></button>
             </div>
           ))
         )}

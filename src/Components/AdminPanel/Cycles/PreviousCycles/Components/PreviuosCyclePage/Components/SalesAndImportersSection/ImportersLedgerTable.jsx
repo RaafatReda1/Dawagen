@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { formatEgp } from "../../../../../../../../utils/formatters";
 import TraderProfileModal from "../Modals/TraderProfileModal/TraderProfileModal";
 import styles from "./ImportersLedgerTable.module.css";
 
@@ -15,16 +14,15 @@ const ImportersLedgerTable = ({ importersList = [] }) => {
           <tbody>
             {importersList.length === 0 ? <tr><td colSpan="6" style={{ textAlign: "center", color: "#9CA3AF" }}>لا توجد مبيعات مسجلة للتجار</td></tr> : (
               importersList.map((imp, idx) => {
-                const birdsStr = imp.totalBirdsSold ? `${imp.totalBirdsSold.toLocaleString()} طير` : "";
-                const qtyText = `${imp.totalNetWeightSold.toLocaleString()} كجم ${birdsStr ? `(${birdsStr})` : ""}`;
+                const traderName = imp?.name || imp?.importerInfo?.name || `تاجر #${idx + 1}`;
                 return (
-                  <tr key={idx} style={{ cursor: "pointer" }} onClick={() => setSelectedTrader({ info: imp.importerInfo, roleLabel: "تاجر تصدير ودواجن", operations: imp.salesOperations, totalVal: imp.totalRevenue, totalPaid: imp.totalPaid, remainingDebt: imp.remainingDebt, totalQtyText: qtyText })}>
-                    <td style={{ color: "#1F6E56", textDecoration: "underline" }}><strong>{imp.importerInfo?.name || `تاجر #${idx + 1}`}</strong></td>
-                    <td>{qtyText}</td>
-                    <td>{formatEgp(imp.totalRevenue)}</td>
-                    <td>{formatEgp(imp.totalPaid)}</td>
-                    <td>{formatEgp(imp.remainingDebt)}</td>
-                    <td><span className={imp.hasUnpaidBalance ? styles.badgeUnpaid : styles.badgePaid}>{imp.hasUnpaidBalance ? `متبقي ${formatEgp(imp.remainingDebt)}` : "مسدد بالكامل"}</span></td>
+                  <tr key={idx} style={{ cursor: "pointer" }} onClick={() => setSelectedTrader({ info: imp?.importerInfo || imp, roleLabel: "تاجر تصدير ودواجن", operations: [], totalVal: "DATA HERE!", totalPaid: "DATA HERE!", remainingDebt: "DATA HERE!", totalQtyText: "DATA HERE!" })}>
+                    <td style={{ color: "#1F6E56", textDecoration: "underline" }}><strong>{traderName}</strong></td>
+                    <td>DATA HERE!</td>
+                    <td>DATA HERE!</td>
+                    <td>DATA HERE!</td>
+                    <td>DATA HERE!</td>
+                    <td><span className={styles.badgePaid}>DATA HERE!</span></td>
                   </tr>
                 );
               })

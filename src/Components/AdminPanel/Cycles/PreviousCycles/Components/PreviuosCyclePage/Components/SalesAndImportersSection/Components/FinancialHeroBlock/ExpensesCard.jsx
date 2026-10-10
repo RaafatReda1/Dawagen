@@ -1,25 +1,24 @@
 import React from "react";
 import { Receipt } from "lucide-react";
-import { formatEgp } from "../../../../../../../../../../utils/formatters";
 import styles from "./ExpensesCard.module.css";
 
-const ExpensesCard = ({ expenses = 0, coveragePct = "100", ratioText = "1x", heightPct = 100, isProfit = true }) => (
-  <div className={styles.card} style={{ height: `${heightPct}%` }}>
+const ExpensesCard = () => (
+  <div className={styles.card} style={{ height: "100%" }}>
     <div className={styles.topRow}>
       <div className={styles.titleGroup}>
         <Receipt size={16} className={styles.icon} />
         <span>تكاليف ومصروفات الدورة</span>
       </div>
-      <span className={styles.ratioTag}>{ratioText}</span>
+      <span className={styles.ratioTag}>DATA HERE!</span>
     </div>
     <div className={styles.values}>
-      <div className={styles.bigAmount}>{formatEgp(expenses)}</div>
-      <div className={styles.exactText}>{Math.round(expenses).toLocaleString("ar-EG")} ج.م تكلفة كاملة</div>
+      <div className={styles.bigAmount}>DATA HERE!</div>
+      <div className={styles.exactText}>DATA HERE!</div>
     </div>
     <div className={styles.footer}>
       <div className={styles.detailRow}>
         <span>تغطية الإيراد:</span>
-        <span className={isProfit ? styles.coverGood : styles.coverBad}>{coveragePct}%</span>
+        <span className={styles.coverGood}>DATA HERE!</span>
       </div>
       <div className={styles.detailRow}>
         <span>البنود:</span>

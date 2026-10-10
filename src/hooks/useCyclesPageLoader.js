@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { fetchAllCycles } from "../services/cycleService";
-import { fetchFullCycleRawData, calculateCycleMetrics } from "../services/cycleOperations";
+import { fetchFullCycleRawData } from "../services/cycleOperations";
 
 /**
  * Non-blocking batch loader hook for /cycles route.
@@ -48,10 +48,7 @@ export const useCyclesPageLoader = () => {
 
         const raw = await fetchFullCycleRawData(cycle.id);
         if (raw) {
-          setStepMessage(`جاري حساب المعاملات والمدفوعات المالية للدورة رقم ${cycle.id}...`);
-          await yieldThread();
-          const calculated = calculateCycleMetrics(raw);
-          metricsMap[cycle.id] = calculated;
+          metricsMap[cycle.id] = raw.metrics || {};
         }
       }
 

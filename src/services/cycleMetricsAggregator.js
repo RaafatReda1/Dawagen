@@ -1,9 +1,2 @@
-export {
-  calculateCycleMetrics,
-  extractPaymentsSum,
-  extractWeightsSum,
-  extractDeathsDetail,
-  calcSalesAndImporters,
-  calcDeathsAndMortalityLoss,
-  calcDailyFCR
-} from "./cycleOperations";
+// Calculations are delegated to database
+export {};

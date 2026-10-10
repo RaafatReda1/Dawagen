@@ -15,7 +15,7 @@ const TraderHistoryChart = ({ chartData }) => {
             <XAxis dataKey="date" stroke="#64748b" fontSize={11} />
             <YAxis stroke="#64748b" fontSize={11} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
             <Tooltip
-              formatter={(val, name) => [`${Math.round(val).toLocaleString()} EGP`, name]}
+              formatter={(val, name) => [`${Math.round(Number(val) || 0).toLocaleString()} EGP`, name]}
               contentStyle={{ background: "#ffffff", border: "1px solid #cbd5e1", borderRadius: "8px", color: "#0f172a", fontSize: "12px", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1)" }}
             />
             <Bar dataKey="total" name="القيمة الكلية" fill="#2563eb" radius={[4, 4, 0, 0]} maxBarSize={40} />

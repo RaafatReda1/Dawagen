@@ -1,5 +1,4 @@
 import React from "react";
-import useCycleDetails from "../../../../../../hooks/useCycleDetails";
 import CycleHeader from "./Components/Header/CycleHeader";
 import SummaryBanner from "./Components/SummaryBanner/SummaryBanner";
 import FinancialDetails from "./Components/FinancialDetails/FinancialDetails";
@@ -8,10 +7,7 @@ import ProfitLossFooter from "./Components/ProfitLossFooter/ProfitLossFooter";
 import ActionButton from "./Components/ActionButton/ActionButton";
 import styles from "./CycleCard.module.css";
 
-const CycleCard = ({ cycle, metrics: precalculatedMetrics, onSelect }) => {
-  const { metrics: hookMetrics } = useCycleDetails(!precalculatedMetrics ? cycle?.id : null);
-  const metrics = precalculatedMetrics || hookMetrics;
-
+const CycleCard = ({ cycle, onSelect }) => {
   const cycleNumber = cycle?.id || 1;
   const chickType = cycle?.chick_type || "Cobb 500";
   const startDate = cycle?.started_at ? new Date(cycle.started_at).toLocaleDateString("ar-EG") : "14 سبتمبر 2026";
@@ -19,19 +15,13 @@ const CycleCard = ({ cycle, metrics: precalculatedMetrics, onSelect }) => {
   const isActive = cycle?.is_active ?? false;
   const durationDays = 43;
 
-  const totalRevenue = metrics?.cards?.totalSalesRevenue ?? 0;
-  const totalExpenses = metrics?.cards?.totalCycleCost ?? 0;
-  const netProfitLoss = metrics?.cards?.netProfitLoss ?? 0;
-  const receivablesOwed = metrics?.cards?.receivablesOwed ?? 0;
-  const debtsOwed = metrics?.cards?.debtsOwed ?? 0;
-
   return (
     <div className={styles.cardContainer}>
       <CycleHeader cycleNumber={cycleNumber} chickType={chickType} startDate={startDate} endDate={endDate} durationDays={durationDays} isActive={isActive} />
-      <SummaryBanner totalRevenue={totalRevenue} totalExpenses={totalExpenses} netProfitLoss={netProfitLoss} />
-      <FinancialDetails totalRevenue={totalRevenue} totalExpenses={totalExpenses} netProfitLoss={netProfitLoss} />
-      <ReceivablesSection receivablesOwed={receivablesOwed} debtsOwed={debtsOwed} />
-      <ProfitLossFooter netProfitLoss={netProfitLoss} />
+      <SummaryBanner />
+      <FinancialDetails />
+      <ReceivablesSection />
+      <ProfitLossFooter />
       <ActionButton cycleId={cycleNumber} onSelect={onSelect} />
     </div>
   );

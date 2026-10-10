@@ -1,10 +1,9 @@
 import React from "react";
-import { DollarSign, CheckCircle2 } from "lucide-react";
-import { formatEgp } from "../../../../../../../../../../utils/formatters";
+import { DollarSign } from "lucide-react";
 import styles from "./SalesHeroCard.module.css";
 
-const SalesHeroCard = ({ revenue = 0, collected = 0, receivables = 0, heightPct = 100 }) => (
-  <div className={styles.card} style={{ height: `${heightPct}%` }}>
+const SalesHeroCard = () => (
+  <div className={styles.card} style={{ height: "100%" }}>
     <div className={styles.topRow}>
       <div className={styles.titleGroup}>
         <DollarSign size={16} className={styles.icon} />
@@ -13,25 +12,18 @@ const SalesHeroCard = ({ revenue = 0, collected = 0, receivables = 0, heightPct 
       <span className={styles.badge}>Hero Card 🌟</span>
     </div>
     <div className={styles.values}>
-      <div className={styles.bigAmount}>{formatEgp(revenue)}</div>
-      <div className={styles.exactText}>{Math.round(revenue).toLocaleString("ar-EG")} ج.م مبيعات معتمدة</div>
+      <div className={styles.bigAmount}>DATA HERE!</div>
+      <div className={styles.exactText}>DATA HERE!</div>
     </div>
     <div className={styles.footer}>
       <div className={styles.detailRow}>
         <span>المحصل نقداً:</span>
-        <span className={styles.collectedVal}>{formatEgp(collected)}</span>
+        <span className={styles.collectedVal}>DATA HERE!</span>
       </div>
-      {receivables > 0 ? (
-        <div className={styles.receivableRow}>
-          <span>آجل للتجار:</span>
-          <span className={styles.debtVal}>{formatEgp(receivables)}</span>
-        </div>
-      ) : (
-        <div className={styles.settledRow}>
-          <CheckCircle2 size={13} />
-          <span>مسدد بالكامل</span>
-        </div>
-      )}
+      <div className={styles.receivableRow}>
+        <span>آجل للتجار:</span>
+        <span className={styles.debtVal}>DATA HERE!</span>
+      </div>
     </div>
   </div>
 );

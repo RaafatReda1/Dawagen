@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { fetchActiveCycle, fetchAllCycles, fetchCycleById, createCycleInDb } from "../services/cycleService";
-import { fetchFullCycleRawData, calculateCycleMetrics } from "../services/cycleOperations";
+import { fetchFullCycleRawData } from "../services/cycleOperations";
 
 const CycleContext = createContext();
 
@@ -34,10 +34,10 @@ export const CycleProvider = ({ children }) => {
     try {
       const raw = await fetchFullCycleRawData(targetCycleId);
       if (raw) {
-        const calculated = calculateCycleMetrics(raw);
+        const metrics = raw.metrics || {};
         setRawCycleData(raw);
-        setCycleMetrics(calculated);
-        return { raw, calculated };
+        setCycleMetrics(metrics);
+        return { raw, calculated: metrics };
       } else {
         setRawCycleData(null);
         setCycleMetrics(null);

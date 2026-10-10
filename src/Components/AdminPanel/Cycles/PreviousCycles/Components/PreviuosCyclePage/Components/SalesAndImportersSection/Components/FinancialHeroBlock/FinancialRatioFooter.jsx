@@ -1,15 +1,15 @@
 import React from "react";
 import styles from "./FinancialRatioFooter.module.css";
 
-const FinancialRatioFooter = ({ salesPct = 50, expensesPct = 50, ratioText = "1x", isProfit = true }) => (
+const FinancialRatioFooter = () => (
   <div className={styles.footerBar}>
     <div className={styles.track}>
-      <div className={styles.salesFill} style={{ width: `${salesPct}%` }} title="نسبة المبيعات" />
-      <div className={styles.expensesFill} style={{ width: `${expensesPct}%` }} title="نسبة المصروفات" />
+      <div className={styles.salesFill} style={{ width: "50%" }} title="نسبة المبيعات" />
+      <div className={styles.expensesFill} style={{ width: "50%" }} title="نسبة المصروفات" />
     </div>
     <div className={styles.footnote}>
-      <span>نسبة المبيعات للتكاليف: <strong>{ratioText}</strong></span>
-      <span>{isProfit ? "أرباح تشغيلية ممتازة للدورة ✅" : "عجز يتطلب المراجعة ⚠️"}</span>
+      <span>نسبة المبيعات للتكاليف: <strong>DATA HERE!</strong></span>
+      <span>أرباح تشغيلية ممتازة للدورة ✅</span>
     </div>
   </div>
 );

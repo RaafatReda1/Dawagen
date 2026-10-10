@@ -2,9 +2,7 @@ import React from "react";
 import { TrendingUp } from "lucide-react";
 import styles from "./ExecutionPriceCard.module.css";
 
-const ExecutionPriceCard = ({ avgPrice = 0, revenue = 0, collected = 0 }) => {
-  const collectionPct = revenue > 0 ? Math.min(100, Math.round((collected / revenue) * 100)) : 0;
-
+const ExecutionPriceCard = () => {
   return (
     <div className={styles.card}>
       <div className={styles.header}>
@@ -16,7 +14,7 @@ const ExecutionPriceCard = ({ avgPrice = 0, revenue = 0, collected = 0 }) => {
       </div>
       <div className={styles.heroBlock}>
         <div className={styles.priceRow}>
-          <span className={styles.priceVal}>{avgPrice}</span>
+          <span className={styles.priceVal}>DATA HERE!</span>
           <span className={styles.unit}>ج.م / كجم</span>
         </div>
         <div className={styles.subtitle}>مبني على إجمالي الأوزان والمبيعات</div>
@@ -24,10 +22,10 @@ const ExecutionPriceCard = ({ avgPrice = 0, revenue = 0, collected = 0 }) => {
       <div className={styles.collectionBar}>
         <div className={styles.progressRow}>
           <span>التحصيل:</span>
-          <strong>{revenue > 0 ? `${collectionPct}% نقدياً` : "—"}</strong>
+          <strong>DATA HERE!</strong>
         </div>
         <div className={styles.track}>
-          <div className={styles.fill} style={{ width: `${collectionPct}%` }} />
+          <div className={styles.fill} style={{ width: "50%" }} />
         </div>
       </div>
     </div>

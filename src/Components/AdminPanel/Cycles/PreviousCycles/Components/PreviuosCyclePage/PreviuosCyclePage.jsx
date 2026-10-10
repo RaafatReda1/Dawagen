@@ -17,31 +17,31 @@ import styles from "./PreviuosCyclePage.module.css";
 const PreviuosCyclePage = ({ cycleId, onBack }) => {
   const { rawData, metrics, loading } = useCycleDetails(cycleId);
 
-  if (loading || !metrics) {
-    return <CycleLoader progress={70} stepMessage={`جاري جلب وحساب القوائم المالية للدورة رقم ${cycleId}...`} />;
+  if (loading) {
+    return <CycleLoader progress={70} stepMessage={`جاري جلب بيانات الدورة رقم ${cycleId}...`} />;
   }
 
-  const cycle = metrics.raw?.cycle || {};
+  const cycle = rawData?.cycle || {};
 
   return (
     <div className={styles.pageContainer}>
-      <CyclePageHeader cycleId={cycleId} chickType={cycle.chick_type || "Unknown"} chicksCount={cycle.number_of_chicks || "Undefined"} chickPrice={cycle.chick_price} chickCost={metrics.chickFinancials?.chickCost} startDate={cycle.started_at ? new Date(cycle.started_at).toLocaleDateString("ar-EG") : "Unknown"} endDate={cycle.ended_at ? new Date(cycle.ended_at).toLocaleDateString("ar-EG") : "Unknown"} durationDays={30} onBack={onBack} metrics={metrics} />
-      <SalesMeatSummaryCards salesFinancials={metrics.salesFinancials} metrics={metrics} />
+      <CyclePageHeader cycleId={cycleId} chickType={cycle.chick_type} startDate={cycle.started_at} endDate={cycle.ended_at} onBack={onBack} />
+      <SalesMeatSummaryCards />
       <div className={styles.twoColumnGrid}>
         <div>
-          <FeedConsumptionSummary feedFinancials={metrics.feedFinancials} />
-          <FeedSuppliersTable shipments={metrics.feedFinancials?.shipments} />
-          <DiseasesAndMedsChart medicineFinancials={metrics.medicineFinancials} />
-          <MedicineSuppliersTable invoices={metrics.medicineFinancials?.invoices} />
+          <FeedConsumptionSummary feedFinancials={metrics?.feedFinancials} />
+          <FeedSuppliersTable shipments={rawData?.feedShipments} />
+          <DiseasesAndMedsChart medicineFinancials={metrics?.medicineFinancials} />
+          <MedicineSuppliersTable invoices={rawData?.medicineInvoices} />
         </div>
         <div>
-          <MortalityLossChart chickFinancials={metrics.chickFinancials} />
-          <CumulativeExpensesChart dailyExpensesFinancials={metrics.dailyExpensesFinancials} chickFinancials={metrics.chickFinancials} />
-          <ImportersLedgerTable importersList={metrics.salesFinancials?.importersList} />
-          <MetaDataBorsaChart metaData={rawData?.metaData} salesFinancials={metrics.salesFinancials} />
+          <MortalityLossChart chickFinancials={metrics?.chickFinancials} />
+          <CumulativeExpensesChart chickFinancials={metrics?.chickFinancials} />
+          <ImportersLedgerTable importersList={rawData?.importers} />
+          <MetaDataBorsaChart metaData={rawData?.metaData} />
         </div>
       </div>
-      <CycleAiReportCard metrics={metrics} />
+      <CycleAiReportCard />
     </div>
   );
 };

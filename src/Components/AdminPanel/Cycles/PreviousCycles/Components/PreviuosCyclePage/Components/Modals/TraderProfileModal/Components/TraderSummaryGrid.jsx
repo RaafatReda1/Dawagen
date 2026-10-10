@@ -1,29 +1,27 @@
 import React from "react";
 import styles from "./TraderSummaryGrid.module.css";
 
-const TraderSummaryGrid = ({ stats }) => {
-  const { totalQtyText, totalVal, totalPaid, remaining } = stats;
-
+const TraderSummaryGrid = () => {
   return (
     <div className={styles.grid}>
       <div className={styles.card}>
         <span className={styles.label}>إجمالي الكميات / الحجم</span>
-        <strong className={styles.val}>{totalQtyText}</strong>
+        <strong className={styles.val}>DATA HERE!</strong>
       </div>
       <div className={styles.card}>
         <span className={styles.label}>إجمالي التعاملات</span>
-        <strong className={styles.val}>{totalVal.toLocaleString()} EGP</strong>
+        <strong className={styles.val}>DATA HERE!</strong>
       </div>
       <div className={styles.card}>
         <span className={styles.label}>إجمالي المدفوع</span>
         <strong className={`${styles.val} ${styles.green}`}>
-          {totalPaid.toLocaleString()} EGP
+          DATA HERE!
         </strong>
       </div>
       <div className={styles.card}>
         <span className={styles.label}>المتبقي / المديونية</span>
-        <strong className={`${styles.val} ${remaining > 0 ? styles.red : styles.green}`}>
-          {remaining.toLocaleString()} EGP
+        <strong className={`${styles.val} ${styles.green}`}>
+          DATA HERE!
         </strong>
       </div>
     </div>
