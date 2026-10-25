@@ -10,7 +10,7 @@ const DayCard = ({day}) => {
     <div className={styles.dayCard}>
         <span>يوم {day_number}</span>
         <button onClick={openModal}>Add Events</button>
-        {isModalOpen && <AddEventsModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>}
+        {isModalOpen && <AddEventsModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} day={day}/>}
     </div>
   )
 }

@@ -1,0 +1,37 @@
+{
+value: {app_metadata: { .. }, aud: "authenticated", confirmed ... }
+app_metadata: {provider: "google", providers: Array(1)}
+provider: "google"
+providers: ["google"]
+new entry :
+aud: "authenticated"
+confirmed_at: "2026-09-13T01:22:56.615645Z"
+created_at : "2026-09-13T01:22:56.594495Z"
+email: "rafat2782005@gmail.com"
+email_confirmed_at : "2026-09-13T01:22:56.615645Z"
+id: "b26bdf68-b640-4998-a411-b2c0734503fc"
+identities: [{.} ]
+x 0: {created_at: "2026-09-13T01:22:56.609979Z", email: ... }
+created_at : "2026-09-13T01:22:56.609979Z"
+email: "rafat2782005@gmail.com"
+id: "106330706426601364717"
+v identity_data: {avatar_url: "https://1h3.googleusercontent.com/a/A ... }
+avatar_url: "https://1h3.googleusercontent.com/a/ACg8ocIzFq3tKoRrsBWjAH_QEMW02-fNgO_WuJBcq4qBu5kFrJEfCLMw=s96-c"
+email: "rafat2782005@gmail.com"
+email_verified: true
+full_name: "Raafat Rada"
+iss: "https://accounts.google.com"
+name: "Raafat Rada"
+phone_verified: false
+picture: "https://1h3.googleusercontent.com/a/ACg8ocIzFq3tKoRrsBWjAH_QEMW02-fNgO_WuJBcq4qBu5kFrJEfCLMw=596-c"
+provider_id: "106330706426601364717"
+sub: "106330706426601364717'
+new entry: "
+identity_id: "9ea1c4e9-5fed-44ac-b12e-93b2f4d39325"
+last_sign_in_at: "2026-09-13T01:22:56.609917Z"
+provider: "google"
+updated_at: "2026-10-04T06:31:35.824379Z"
+user_id: "b26bdf68-b640-4998-a411-b2c0734503fc"
+new entry :
+new entry
+is anonymous: false}
