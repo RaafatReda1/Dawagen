@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from "./DayCard.module.css"
+import AddEventsModal from '../AddEventsModal/AddEventsModal';
 const DayCard = ({day}) => {
-    const { id, day_number} = day
+    const { day_number} = day;
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => setIsModalOpen(true);
   return (
     <div className={styles.dayCard}>
         <span>يوم {day_number}</span>
-        <button>Add Events</button>
+        <button onClick={openModal}>Add Events</button>
+        {isModalOpen && <AddEventsModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>}
     </div>
   )
 }
