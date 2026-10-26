@@ -1,0 +1,27 @@
+.warning {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  padding: 14px 16px;
+  border-radius: 12px;
+  color: #92400e;
+  direction: rtl;
+}
+
+.icon {
+  color: #d97706;
+  flex-shrink: 0;
+}
+
+.title {
+  margin: 0 0 2px 0;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.sub {
+  font-size: 0.8rem;
+  color: #78350f;
+}

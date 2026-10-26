@@ -1,53 +1,47 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import useCycleDetails from "../../../../hooks/useCycleDetails";
 import { useCycleRouteInfo } from "../../Hooks/useCycleRouteInfo";
+import DashboardHeader from "./Components/DashboardHeader/DashboardHeader";
+import DaysGrid from "./Components/DaysGrid/DaysGrid";
+import AddEventsModal from "./Components/AddEventsModal/AddEventsModal";
 import styles from "./DashboardTab.module.css";
-import DayCard from "./Components/DayCard/DayCard";
 
 const DashboardTab = () => {
-  const { cycleId, cycleData, isCurrentCycle, loading, notFound } =
-    useCycleRouteInfo();
-
-  const { rawData } = useCycleDetails(1);
+  const { cycleId, cycleData, isCurrentCycle, loading, notFound } = useCycleRouteInfo();
+  const { rawData, refetch } = useCycleDetails(cycleId);
+  const [selectedDay, setSelectedDay] = useState(null);
 
   const days = useMemo(() => {
     const existingDays = rawData?.days ?? [];
-
     if (!isCurrentCycle || !rawData?.days) return existingDays;
-
-    const newDay = {
-      day_number: existingDays.length + 1,
-      cycle_id: cycleId,
-      create_at: new Date(),
-      notes: "This is a new day",
-    };
-
-    return [...existingDays, newDay];
+    return [
+      ...existingDays,
+      { day_number: existingDays.length + 1, cycle_id: cycleId, notes: "يوم جديد" },
+    ];
   }, [rawData?.days, cycleId, isCurrentCycle]);
 
-  if (loading) return <div>جاري التحميل...</div>;
-
-  if (notFound || !cycleId)
-    return <div>الدورة غير موجودة أو لا توجد دورة نشطة</div>;
+  if (loading) return <div className={styles.status}>جاري التحميل...</div>;
+  if (notFound || !cycleId) return <div className={styles.status}>الدورة غير موجودة</div>;
 
   return (
-    <div>
-      <h2>الدورة رقم: {cycleId}</h2>
-      <p>نوع السلالة: {cycleData?.chick_type}</p>
-      <p>الحالة: {isCurrentCycle ? "دورة نشطة الآن" : "دورة سابقة / أرشيف"}</p>
-
-      <div className={styles.cardsContainer}>
-        <p className={styles.daysHeaderNumber}>Days: {days.length}</p>
-
-        <div className={styles.card}>
-          {days.map((day) => (
-            <DayCard
-              key={`${day.cycle_id}-${day.day_number}`}
-              day={day}
-            />
-          ))}
-        </div>
-      </div>
+    <div className={styles.container}>
+      <DashboardHeader
+        cycleId={cycleId}
+        cycleData={cycleData}
+        isCurrentCycle={isCurrentCycle}
+        daysCount={days.length}
+      />
+      <DaysGrid days={days} events={rawData?.events} onSelectDay={setSelectedDay} />
+      {selectedDay && (
+        <AddEventsModal
+          isOpen={Boolean(selectedDay)}
+          day={selectedDay}
+          cycleId={cycleId}
+          rawData={rawData}
+          refetch={refetch}
+          onClose={() => setSelectedDay(null)}
+        />
+      )}
     </div>
   );
 };

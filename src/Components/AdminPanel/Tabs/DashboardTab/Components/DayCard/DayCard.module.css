@@ -1,0 +1,104 @@
+.card {
+  background: var(--color-bg-card, #ffffff);
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 145px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  direction: rtl;
+}
+
+.card:hover {
+  border-color: #1f6e56;
+  box-shadow: 0 4px 12px rgba(31, 110, 86, 0.08);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dayBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.icon {
+  color: #1f6e56;
+}
+
+.dayText {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #111827;
+}
+
+.eventsBadge {
+  background: #e8f4f0;
+  color: #1f6e56;
+  border: 1px solid rgba(31, 110, 86, 0.2);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.emptyBadge {
+  background: #f3f4f6;
+  color: #6b7280;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.body {
+  display: flex;
+  align-items: center;
+}
+
+.tempChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  color: #92400e;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.statusText {
+  font-size: 0.82rem;
+  color: #6b7280;
+}
+
+.addBtn {
+  background: #1f6e56;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.addBtn:hover {
+  background: #144939;
+}

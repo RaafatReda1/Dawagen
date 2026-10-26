@@ -1,0 +1,37 @@
+.inputsRow {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.group label {
+  font-size: 0.78rem;
+  color: #374151;
+  font-weight: 700;
+}
+
+.group input,
+.group select {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #111827;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.group input:focus,
+.group select:focus {
+  border-color: #1f6e56;
+  box-shadow: 0 0 0 3px rgba(31, 110, 86, 0.1);
+}

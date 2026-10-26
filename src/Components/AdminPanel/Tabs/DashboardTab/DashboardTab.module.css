@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  direction: rtl;
+}
+
+.status {
+  padding: 40px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #6b7280;
+  font-weight: 600;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+}

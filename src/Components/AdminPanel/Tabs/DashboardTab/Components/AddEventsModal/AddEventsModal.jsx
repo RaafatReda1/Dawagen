@@ -1,26 +1,45 @@
-import { createContext, useEffect, useState } from "react";
-import styles from "./AddEventsModal.module.css";
-import AddEventsModalHeader from "./Components/AddEventsModalHeader/AddEventsModalHeader";
+import { useEffect, useState } from "react";
 import supabase from "../../../../../../utils/supabase";
+import { EventsProvider } from "./Contexts/EventsContext";
+import AddEventsModalHeader from "./Components/AddEventsModalHeader/AddEventsModalHeader";
+import NotificationBanner from "./Components/NotificationBanner/NotificationBanner";
+import GeneralEventBar from "./Components/GeneralEventBar/GeneralEventBar";
+import AddEventsModalContent from "./Components/AddEventsModalContent/AddEventsModalContent";
+import styles from "./AddEventsModal.module.css";
 
-export const generalEventDataContext = createContext();
-const AddEventsModal = ({ setIsModalOpen, day }) => {
+const AddEventsModal = ({ isOpen = true, onClose, setIsModalOpen, day, cycleId, rawData, refetch }) => {
   const [user, setUser] = useState(null);
+
+  const handleClose = () => {
+    if (onClose) onClose();
+    if (setIsModalOpen) setIsModalOpen(false);
+  };
+
   useEffect(() => {
-    const handleGetUser = async () => {
-      const { data, error } = await supabase.auth.getUser();
-      if (data) setUser(data.user);
-      if (error) console.log(error);
-    };
-    handleGetUser();
+    supabase.auth.getUser().then(({ data }) => {
+      if (data?.user) setUser(data.user);
+    });
   }, []);
-  
+
+  if (!isOpen) return null;
+
   return (
-    <generalEventDataContext.Provider value={{user, day}}>
-      <div className={styles.modalContainer}>
-        <AddEventsModalHeader setIsModalOpen={setIsModalOpen} />
-      </div>
-    </generalEventDataContext.Provider>
+    <EventsProvider
+      day={day}
+      cycleId={cycleId || day?.cycle_id}
+      user={user}
+      rawData={rawData}
+      refetch={refetch}
+      onClose={handleClose}
+    >
+      <div className={styles.overlay} onClick={handleClose} />
+      <aside className={styles.modalContainer}>
+        <AddEventsModalHeader />
+        <NotificationBanner />
+        <GeneralEventBar />
+        <AddEventsModalContent />
+      </aside>
+    </EventsProvider>
   );
 };
 

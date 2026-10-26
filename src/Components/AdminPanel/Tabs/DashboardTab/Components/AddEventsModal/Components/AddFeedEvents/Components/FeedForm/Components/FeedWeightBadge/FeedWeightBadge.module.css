@@ -1,0 +1,51 @@
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  padding: 10px 14px;
+  border-radius: 10px;
+}
+
+.icon {
+  color: #1f6e56;
+  flex-shrink: 0;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+}
+
+.label {
+  color: #374151;
+  font-weight: 600;
+}
+
+.val {
+  color: #065f46;
+  font-weight: 800;
+  font-size: 0.92rem;
+}
+
+.sub {
+  color: #6b7280;
+  font-size: 0.78rem;
+}
+
+.noWeight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #92400e;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+}

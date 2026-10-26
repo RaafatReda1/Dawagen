@@ -1,9 +1,25 @@
-import React from 'react'
+import { useEvents } from "../../Contexts/EventsContext";
+import { useFeedSubmit } from "./Hooks/useFeedSubmit";
+import FeedForm from "./Components/FeedForm/FeedForm";
+import styles from "./AddFeedEvents.module.css";
 
 const AddFeedEvents = () => {
-  return (
-    <div>AddFeedEvents</div>
-  )
-}
+  const { rawData } = useEvents();
+  const { form, isSubmitting, handleChange, handleSubmit } =
+    useFeedSubmit();
 
-export default AddFeedEvents
+  return (
+    <div className={styles.container}>
+      <h3 className={styles.title}>تسجيل استهلاك العلف</h3>
+      <FeedForm
+        form={form}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+        isSubmitting={isSubmitting}
+        shipments={rawData?.feedShipments}
+      />
+    </div>
+  );
+};
+
+export default AddFeedEvents;

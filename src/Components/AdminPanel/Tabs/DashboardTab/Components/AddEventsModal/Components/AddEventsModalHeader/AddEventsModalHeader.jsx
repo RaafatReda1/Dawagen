@@ -1,55 +1,41 @@
-import { useState } from "react";
+import { X } from "lucide-react";
+import { useEvents } from "../../Contexts/EventsContext";
 import styles from "./AddEventsModalHeader.module.css";
-import AddDrugsEvents from "../AddDrugsEvents/AddDrugsEvents";
-import AddFeedEvents from "../AddFeedEvents/AddFeedEvents";
-import AddExpensesEvents from "../AddExpensesEvents/AddExpensesEvents";
-import AddMetaDataEvents from "../AddMetaDataEvents/AddMetaDataEvents";
-const AddEventsModalHeader = ({ setIsModalOpen }) => {
-  const [activeTab, setActiveTab] = useState("expenses");
-  const closeModal = () => setIsModalOpen(false);
 
-  const handleTabClick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setActiveTab(e.target.id);
-  };
+const tabs = [
+  { id: "expenses", label: "مصاريف" },
+  { id: "feed", label: "أعلاف" },
+  { id: "drugs", label: "أدوية" },
+  { id: "metaData", label: "أوزان وملاحظات" },
+];
+
+const AddEventsModalHeader = () => {
+  const { day, activeTab, setActiveTab, onClose } = useEvents();
 
   return (
-    <div className="addEventsDialog">
-      <header className={styles.header}>
-        <button
-          onClick={handleTabClick}
-          id="drugs"
-          className={styles.mainEventBtn}
-        >
-          Drugs
+    <header className={styles.header}>
+      <div className={styles.topRow}>
+        <h2 className={styles.title}>تسجيل أحداث - يوم {day?.day_number}</h2>
+        <button type="button" onClick={onClose} className={styles.closeBtn} title="إغلاق">
+          <X size={18} />
         </button>
-
-        <button
-          onClick={handleTabClick}
-          id="metaData"
-          className={styles.mainEventBtn}
-        >
-          metaData
-        </button>
-        <button onClick={handleTabClick} id="feed">
-          Feed
-        </button>
-        <button onClick={handleTabClick} id="expenses">
-          Expenses
-        </button>
-        <button onClick={closeModal} id="close">
-          close
-        </button>
-      </header>
-
-      <div className={styles.addEventsContent}>
-        {activeTab === "drugs" && <AddDrugsEvents />}
-        {activeTab === "feed" && <AddFeedEvents />}
-        {activeTab === "expenses" && <AddExpensesEvents />}
-        {activeTab === "metaData" && <AddMetaDataEvents />}
       </div>
-    </div>
+
+      <nav className={styles.tabsNav}>
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            type="button"
+            className={`${styles.tabBtn} ${
+              activeTab === tab.id ? styles.activeTab : ""
+            }`}
+            onClick={() => setActiveTab(tab.id)}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </nav>
+    </header>
   );
 };
 
