@@ -4,15 +4,18 @@ import GeneralEventInputs from "./Components/GeneralEventInputs/GeneralEventInpu
 import styles from "./GeneralEventBar.module.css";
 
 const GeneralEventBar = () => {
-  const { day, cycleId, user, rawData, generalInfo, setGeneralInfo, notify, refetch } =
-    useEvents();
+  const { day, cycleId, user, rawData, generalInfo, setGeneralInfo, notify, refetch, clearDraft } = useEvents();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setGeneralInfo((prev) => ({ ...prev, [name]: value }));
-  };
+  const handleChange = (e) => setGeneralInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
   const handleSave = async () => {
+    const temp = parseFloat(generalInfo.temperature);
+    const deaths = parseInt(generalInfo.deaths, 10);
+    if (generalInfo.temperature && (temp < 10 || temp > 50)) {
+      return notify("درجة الحرارة يجب أن تكون بين 10° و 50° مئوية", "error");
+    }
+    if (generalInfo.deaths && deaths < 0) return notify("عدد النافق لا يمكن أن يكون سالباً", "error");
+
     try {
       const dayId = await ensureDayRecord(day, cycleId);
       await createEventRecord({
@@ -22,7 +25,8 @@ const GeneralEventBar = () => {
         death_reason: generalInfo.deathReason,
         performed_by: user?.id,
       });
-      notify("تم حفظ بيانات اليوم بنجاح!");
+      notify("تم حفظ قراءات اليوم بنجاح!");
+      if (clearDraft) clearDraft();
       if (refetch) refetch();
     } catch (err) {
       notify("فشل حفظ القراءات: " + err.message, "error");
@@ -31,14 +35,8 @@ const GeneralEventBar = () => {
 
   return (
     <div className={styles.bar}>
-      <GeneralEventInputs
-        generalInfo={generalInfo}
-        onChange={handleChange}
-        diseases={rawData?.diseases}
-      />
-      <button type="button" className={styles.saveBtn} onClick={handleSave}>
-        حفظ
-      </button>
+      <GeneralEventInputs generalInfo={generalInfo} onChange={handleChange} diseases={rawData?.diseases} />
+      <button type="button" className={styles.saveBtn} onClick={handleSave}>حفظ</button>
     </div>
   );
 };

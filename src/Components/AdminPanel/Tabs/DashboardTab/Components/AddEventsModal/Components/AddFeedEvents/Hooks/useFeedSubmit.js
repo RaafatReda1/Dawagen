@@ -3,21 +3,22 @@ import { useEvents } from "../../../Contexts/EventsContext";
 import { ensureDayRecord, createEventRecord, createFeedWithdrawRecord } from "../../../Utils";
 
 export const useFeedSubmit = () => {
-  const { day, cycleId, user, rawData, generalInfo, notify, refetch } = useEvents();
+  const { day, cycleId, user, rawData, generalInfo, notify, refetch, tabForms, setTabForms, clearDraft } = useEvents();
   const shipments = rawData?.feedShipments || [];
   const lastShipment = shipments[shipments.length - 1];
-  const [form, setForm] = useState({
-    food_id: lastShipment ? String(lastShipment.id) : "",
-    sacks_consumed: "",
-    consumption_type: "consumed",
-  });
+  const form = tabForms.feed;
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    if (!form.food_id && lastShipment) setForm((p) => ({ ...p, food_id: String(lastShipment.id) }));
+    if (!form.food_id && lastShipment) {
+      setTabForms((p) => ({ ...p, feed: { ...p.feed, food_id: String(lastShipment.id) } }));
+    }
   }, [lastShipment, form.food_id]);
 
-  const handleChange = (e) => setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setTabForms((p) => ({ ...p, feed: { ...p.feed, [name]: value } }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +33,8 @@ export const useFeedSubmit = () => {
       const eventId = await createEventRecord({ parent_day_id: dayId, ...generalInfo, performed_by: user?.id });
       await createFeedWithdrawRecord({ parent_event_id: eventId, ...form, food_id: activeFoodId });
       notify("تم تسجيل سحب العلف بنجاح!");
-      setForm((p) => ({ ...p, sacks_consumed: "" }));
+      setTabForms((p) => ({ ...p, feed: { ...p.feed, sacks_consumed: "" } }));
+      if (clearDraft) clearDraft();
       if (refetch) refetch();
     } catch (err) {
       notify("فشل تسجيل سحب العلف: " + err.message, "error");

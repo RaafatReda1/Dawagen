@@ -3,13 +3,20 @@ import { useEvents } from "../../../Contexts/EventsContext";
 import { ensureDayRecord, createMetaDataRecord, createFollowUpRecord } from "../../../Utils";
 
 export const useMetaSubmit = () => {
-  const { day, cycleId, notify, refetch } = useEvents();
-  const [weights, setWeights] = useState({ small: "", medium: "", large: "", sample: "" });
-  const [meta, setMeta] = useState({ name: "", value: "" });
+  const { day, cycleId, notify, refetch, tabForms, setTabForms, clearDraft } = useEvents();
+  const weights = tabForms.meta.weights;
+  const meta = { name: tabForms.meta.name, value: tabForms.meta.value };
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleWeightChange = (e) => setWeights((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  const handleMetaChange = (e) => setMeta((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleWeightChange = (e) => {
+    const { name, value } = e.target;
+    setTabForms((p) => ({ ...p, meta: { ...p.meta, weights: { ...p.meta.weights, [name]: value } } }));
+  };
+
+  const handleMetaChange = (e) => {
+    const { name, value } = e.target;
+    setTabForms((p) => ({ ...p, meta: { ...p.meta, [name]: value } }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,8 +30,8 @@ export const useMetaSubmit = () => {
         await createMetaDataRecord({ parent_day_id: dayId, meta_name: meta.name, meta_value: meta.value });
       }
       notify("تم حفظ بيانات الملاحظات والأوزان بنجاح!");
-      setWeights({ small: "", medium: "", large: "", sample: "" });
-      setMeta({ name: "", value: "" });
+      setTabForms((p) => ({ ...p, meta: { weights: { small: "", medium: "", large: "", sample: "" }, name: "", value: "" } }));
+      if (clearDraft) clearDraft();
       if (refetch) refetch();
     } catch (err) {
       notify("فشل حفظ البيانات: " + err.message, "error");

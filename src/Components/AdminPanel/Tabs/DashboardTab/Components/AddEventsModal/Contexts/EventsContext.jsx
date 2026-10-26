@@ -1,12 +1,19 @@
 import { createContext, useContext, useState } from "react";
-import { useFormDraft } from "../../../../../Hooks/useFormDraft";
+import { useEventsDraft } from "../Hooks/useEventsDraft";
 
 const EventsContext = createContext(null);
 const INITIAL_GEN = { temperature: "", deaths: "", deathReason: "" };
+const INITIAL_TABS = {
+  expenses: { expense_item: "", amount: "", payment_type: "cash" },
+  feed: { food_id: "", sacks_consumed: "", consumption_type: "consumed" },
+  drugs: { drug_id: "", packages_count: "", consumed_capacity: "", disease_id: "" },
+  meta: { weights: { small: "", medium: "", large: "", sample: "" }, name: "", value: "" },
+};
 
 export const EventsProvider = ({ children, day, cycleId, user, rawData, refetch, onClose }) => {
   const [activeTab, setActiveTab] = useState("expenses");
   const [generalInfo, setGeneralInfo] = useState(INITIAL_GEN);
+  const [tabForms, setTabForms] = useState(INITIAL_TABS);
   const [notification, setNotification] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -15,9 +22,8 @@ export const EventsProvider = ({ children, day, cycleId, user, rawData, refetch,
     setTimeout(() => setNotification(null), 4000);
   };
 
-  const draft = useFormDraft({
-    draftKey: day?.id ? `draft_events_${day.id}` : null,
-    initialState: INITIAL_GEN, form: generalInfo, setForm: setGeneralInfo, onClose, notify,
+  const draft = useEventsDraft({
+    day, cycleId, generalInfo, setGeneralInfo, tabForms, setTabForms, onClose, notify,
   });
 
   const value = {
@@ -25,7 +31,8 @@ export const EventsProvider = ({ children, day, cycleId, user, rawData, refetch,
     requestClose: draft.requestClose, showConfirm: draft.showConfirm,
     saveDraft: draft.saveDraft, discardAndClose: draft.discardAndClose,
     cancelClose: draft.cancelClose, clearDraft: draft.clearDraft,
-    activeTab, setActiveTab, generalInfo, setGeneralInfo, notification, notify, isSubmitting, setIsSubmitting,
+    activeTab, setActiveTab, generalInfo, setGeneralInfo,
+    tabForms, setTabForms, notification, notify, isSubmitting, setIsSubmitting,
   };
 
   return <EventsContext.Provider value={value}>{children}</EventsContext.Provider>;

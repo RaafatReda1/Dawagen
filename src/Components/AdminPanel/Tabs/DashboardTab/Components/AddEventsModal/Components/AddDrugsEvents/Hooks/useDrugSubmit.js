@@ -3,13 +3,13 @@ import { useEvents } from "../../../Contexts/EventsContext";
 import { ensureDayRecord, createEventRecord, createDrugWithdrawRecord } from "../../../Utils";
 
 export const useDrugSubmit = () => {
-  const { day, cycleId, user, generalInfo, notify, refetch } = useEvents();
-  const [form, setForm] = useState({ drug_id: "", packages_count: "", consumed_capacity: "", disease_id: "" });
+  const { day, cycleId, user, generalInfo, notify, refetch, tabForms, setTabForms, clearDraft } = useEvents();
+  const form = tabForms.drugs;
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    setTabForms((p) => ({ ...p, drugs: { ...p.drugs, [name]: value } }));
   };
 
   const handleSubmit = async (e) => {
@@ -27,7 +27,8 @@ export const useDrugSubmit = () => {
       });
       await createDrugWithdrawRecord({ parent_event_id: eventId, ...form });
       notify("تم تسجيل سحب الدواء بنجاح!");
-      setForm({ drug_id: "", packages_count: "", consumed_capacity: "", disease_id: "" });
+      setTabForms((p) => ({ ...p, drugs: { drug_id: "", packages_count: "", consumed_capacity: "", disease_id: "" } }));
+      if (clearDraft) clearDraft();
       if (refetch) refetch();
     } catch (err) {
       notify("فشل تسجيل سحب الدواء: " + err.message, "error");
