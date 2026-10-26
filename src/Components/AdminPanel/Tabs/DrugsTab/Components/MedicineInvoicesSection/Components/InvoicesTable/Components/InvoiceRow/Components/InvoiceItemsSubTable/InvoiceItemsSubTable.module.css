@@ -1,0 +1,44 @@
+.wrapper {
+  background: #f9fafb;
+  padding: 12px 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.subTable {
+  width: 100%;
+  border-collapse: collapse;
+  direction: rtl;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.subTable th {
+  background: #f3f4f6;
+  padding: 8px 12px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #4b5563;
+  text-align: right;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.subTable td {
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  color: #374151;
+  text-align: right;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.subTable tr:last-child td {
+  border-bottom: none;
+}
+
+.empty {
+  padding: 12px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.8rem;
+}

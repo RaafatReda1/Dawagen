@@ -35,3 +35,10 @@
   border-color: #1f6e56;
   box-shadow: 0 0 0 3px rgba(31, 110, 86, 0.1);
 }
+
+.warning {
+  color: #dc2626;
+  font-size: 0.74rem;
+  font-weight: 700;
+  margin-top: 2px;
+}

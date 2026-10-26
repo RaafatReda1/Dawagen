@@ -1,0 +1,44 @@
+.row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.group label {
+  font-size: 0.82rem;
+  color: #374151;
+  font-weight: 700;
+}
+
+.group input,
+.group select {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #111827;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.group input:focus,
+.group select:focus {
+  border-color: #1f6e56;
+  box-shadow: 0 0 0 3px rgba(31, 110, 86, 0.1);
+}
+
+.warning {
+  color: #dc2626;
+  font-size: 0.74rem;
+  font-weight: 700;
+  margin-top: 2px;
+}

@@ -10,13 +10,13 @@ const tabs = [
 ];
 
 const AddEventsModalHeader = () => {
-  const { day, activeTab, setActiveTab, onClose } = useEvents();
+  const { day, activeTab, setActiveTab, requestClose } = useEvents();
 
   return (
     <header className={styles.header}>
       <div className={styles.topRow}>
         <h2 className={styles.title}>تسجيل أحداث - يوم {day?.day_number}</h2>
-        <button type="button" onClick={onClose} className={styles.closeBtn} title="إغلاق">
+        <button type="button" onClick={requestClose} className={styles.closeBtn} title="إغلاق">
           <X size={18} />
         </button>
       </div>

@@ -29,7 +29,7 @@ const ShipmentForm = ({ form, onChange, onSubmit, isSubmitting, suppliers }) => 
           <input type="number" step="0.5" name="sack_price" value={form.sack_price} onChange={onChange} placeholder="350" required />
         </div>
       </div>
-      <ShipmentPaymentInputs paidAmount={form.paid_amount} paymentType={form.payment_type} onChange={onChange} />
+      <ShipmentPaymentInputs paidAmount={form.paid_amount} paymentType={form.payment_type} onChange={onChange} maxAmount={totalCost} />
       {totalCost > 0 && (
         <div className={styles.costBox}>
           <span>الإجمالي: <strong>{totalCost.toLocaleString()} ج.م</strong></span>

@@ -1,0 +1,69 @@
+.row {
+  border-bottom: 1px solid #f3f4f6;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.row:hover,
+.expandedRow {
+  background: #fbfcfc;
+}
+
+.row td {
+  padding: 12px 14px;
+  font-size: 0.86rem;
+  color: #374151;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.numCol {
+  color: #9ca3af;
+  font-size: 0.8rem;
+  width: 45px;
+}
+
+.arrowCol {
+  color: #6b7280;
+  width: 40px;
+  text-align: center !important;
+}
+
+.dueText {
+  color: #b45309;
+  font-weight: 700;
+}
+
+.paidBadge {
+  display: inline-block;
+  background: #e8f4f0;
+  color: #1f6e56;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.partialBadge {
+  display: inline-block;
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.dueBadge {
+  display: inline-block;
+  background: #fef3c7;
+  color: #b45309;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.subCell {
+  padding: 0 !important;
+}

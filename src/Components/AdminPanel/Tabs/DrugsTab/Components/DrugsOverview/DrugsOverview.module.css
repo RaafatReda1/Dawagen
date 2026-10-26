@@ -1,0 +1,12 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+  direction: rtl;
+}
+
+.blueIcon { color: #2563eb; }
+.greenIcon { color: #1f6e56; }
+.amberIcon { color: #d97706; }
+.tealIcon { color: #0d9488; }
