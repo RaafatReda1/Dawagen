@@ -1,0 +1,64 @@
+.row td {
+  padding: 12px 14px;
+  font-size: 0.85rem;
+  color: #374151;
+  border-bottom: 1px solid #f3f4f6;
+  text-align: right;
+}
+
+.row:hover {
+  background: #f9fafb;
+}
+
+.numCol {
+  color: #9ca3af;
+  font-weight: 700;
+  width: 40px;
+}
+
+.feedCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedCol strong {
+  color: #111827;
+  font-size: 0.88rem;
+}
+
+.sub {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.remText {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.paidBadge {
+  background: #e8f4f0;
+  color: #1f6e56;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.partialBadge {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.dueBadge {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}

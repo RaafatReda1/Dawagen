@@ -1,0 +1,81 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  direction: rtl;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.group label {
+  font-size: 0.82rem;
+  color: #374151;
+  font-weight: 700;
+}
+
+.group input,
+.group select {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #111827;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.group input:focus,
+.group select:focus {
+  border-color: #1f6e56;
+  box-shadow: 0 0 0 3px rgba(31, 110, 86, 0.1);
+}
+
+.costBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #e8f4f0;
+  border: 1px solid rgba(31, 110, 86, 0.2);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  color: #1f6e56;
+}
+
+.costBox strong {
+  font-size: 1.05rem;
+}
+
+.submitBtn {
+  margin-top: 6px;
+  background: #1f6e56;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #144939;
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

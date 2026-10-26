@@ -1,0 +1,52 @@
+.row {
+  border-bottom: 1px solid #f3f4f6;
+  transition: background 0.15s;
+}
+
+.row:hover {
+  background: #f9fafb;
+}
+
+.row td {
+  padding: 10px 14px;
+  font-size: 0.84rem;
+  color: #374151;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.numCol {
+  color: #9ca3af;
+  font-size: 0.78rem;
+  width: 45px;
+}
+
+.feedCol strong {
+  color: #111827;
+  font-weight: 700;
+}
+
+.sacksCol {
+  font-weight: 700;
+  color: #111827;
+}
+
+.consumedBadge {
+  display: inline-block;
+  background: #e8f4f0;
+  color: #1f6e56;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.damagedBadge {
+  display: inline-block;
+  background: #fef3c7;
+  color: #b45309;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
