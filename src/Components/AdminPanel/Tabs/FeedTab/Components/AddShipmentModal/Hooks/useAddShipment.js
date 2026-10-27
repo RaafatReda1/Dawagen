@@ -30,7 +30,7 @@ export const useAddShipment = (onClose) => {
     setIsSubmitting(true);
     try {
       const supplierId = await ensureSupplierRecord(form.supplier_id, form.new_supplier_name);
-      await createFeedShipmentRecord({ cycle_id: cycleId, supplier_id: supplierId, ...form });
+      await createFeedShipmentRecord({ ...form, cycle_id: cycleId, supplier_id: supplierId });
       draft.clearDraft();
       notify("تم إضافة شحنة العلف بنجاح!");
       if (refetch) refetch();

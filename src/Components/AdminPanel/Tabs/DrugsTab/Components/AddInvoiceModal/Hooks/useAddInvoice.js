@@ -29,7 +29,7 @@ export const useAddInvoice = (onClose) => {
     setIsSubmitting(true);
     try {
       const supplierId = await ensureMedicineSupplierRecord(form.supplier_id, form.new_supplier_name);
-      await createMedicineInvoiceRecord({ cycle_id: cycleId, supplier_id: supplierId, total_price: totalPrice, ...form });
+      await createMedicineInvoiceRecord({ ...form, cycle_id: cycleId, supplier_id: supplierId, total_price: totalPrice });
       draft.clearDraft();
       notify("تم تسجيل فاتورة الأدوية بنجاح!");
       if (refetch) refetch();
