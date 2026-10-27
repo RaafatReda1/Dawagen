@@ -1,0 +1,22 @@
+.card {
+  background: var(--card-bg, #ffffff);
+  border-radius: 14px;
+  border: 1px solid var(--border-color, #e2e8f0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  border-color: #cbd5e1;
+}
+
+.expandedCard {
+  border-color: #86efac;
+  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.08);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+}

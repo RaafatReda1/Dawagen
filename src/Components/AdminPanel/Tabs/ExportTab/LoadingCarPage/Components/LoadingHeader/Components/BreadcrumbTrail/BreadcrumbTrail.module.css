@@ -1,0 +1,43 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #64748b;
+  flex-wrap: wrap;
+}
+
+.crumbLink {
+  background: none;
+  border: none;
+  color: #0284c7;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s;
+}
+
+.crumbLink:hover {
+  color: #0369a1;
+  text-decoration: underline;
+}
+
+.separator {
+  color: #94a3b8;
+}
+
+.crumbSection {
+  color: #64748b;
+}
+
+.crumbActive {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f0fdf4;
+  color: #15803d;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-weight: 700;
+  border: 1px solid #bbf7d0;
+}

@@ -1,0 +1,59 @@
+.wrapper {
+  padding: 16px 18px;
+  background: #f8fafc;
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 12px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  gap: 16px;
+  align-items: center;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.val {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.priceInput {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color, #cbd5e1);
+  background: var(--input-bg, #ffffff);
+  color: #0f172a;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.priceInput:focus {
+  outline: none;
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px #dcfce7;
+}
+
+.totalVal {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #16a34a;
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

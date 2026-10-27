@@ -1,0 +1,75 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.priceRow {
+  display: flex;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 260px;
+}
+
+.field label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.field input {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+.cardsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.card {
+  padding: 12px 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card span {
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.card strong {
+  font-size: 1.15rem;
+  color: #0f172a;
+}
+
+.total {
+  color: #2563eb !important;
+}
+
+.paid {
+  color: #16a34a !important;
+}
+
+.debtCard {
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+.debtCard strong {
+  color: #dc2626 !important;
+}

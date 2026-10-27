@@ -1,0 +1,85 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 16px 20px;
+  background: #f8fafc;
+  border-top: 1px solid var(--border-color, #e2e8f0);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.colHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.colHeader h4 {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.tareIcon { color: #0284c7; }
+.grossIcon { color: #16a34a; }
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.weightItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: var(--card-bg, #ffffff);
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  font-size: 0.82rem;
+}
+
+.num {
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.val {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.note {
+  background: #f1f5f9;
+  color: #475569;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+}
+
+.date {
+  margin-right: auto;
+  color: #94a3b8;
+  font-size: 0.72rem;
+}
+
+.empty {
+  color: #94a3b8;
+  font-size: 0.82rem;
+  padding: 8px 0;
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

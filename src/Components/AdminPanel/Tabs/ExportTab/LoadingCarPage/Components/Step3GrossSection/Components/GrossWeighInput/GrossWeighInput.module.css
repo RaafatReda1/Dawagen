@@ -1,0 +1,103 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.field {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldSmall {
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldChicks {
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label,
+.fieldSmall label,
+.fieldChicks label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.requiredLabel {
+  color: #b91c1c !important;
+}
+
+.inputWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  position: absolute;
+  right: 10px;
+  color: #16a34a;
+}
+
+.inputWrap input {
+  padding-right: 36px;
+}
+
+.form input {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.form input:focus {
+  outline: none;
+  border-color: #16a34a;
+}
+
+.addBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #16a34a;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.addBtn:hover:not(:disabled) {
+  background: #15803d;
+}
+
+.addBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

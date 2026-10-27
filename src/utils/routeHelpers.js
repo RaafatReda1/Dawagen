@@ -21,9 +21,8 @@ export const parseCycleRoute = (pathname = "", params = {}) => {
   }
 
   const parts = pathname.split("/").filter(Boolean);
-  const lastPart = parts[parts.length - 1];
   const knownTabs = ["feed", "drugs", "export", "overview"];
-  const tab = knownTabs.includes(lastPart) ? lastPart : "";
+  const tab = knownTabs.find((t) => parts.includes(t)) || "";
 
   const isCurrentCycle =
     pathname.startsWith("/current-cycle") ||

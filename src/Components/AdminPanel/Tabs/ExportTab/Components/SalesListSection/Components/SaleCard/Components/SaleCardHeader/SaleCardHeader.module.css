@@ -1,0 +1,107 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.mainInfo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.iconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #f0fdf4;
+  color: #16a34a;
+  flex-shrink: 0;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.importerName {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-color, #0f172a);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.vehicleType {
+  background: #f1f5f9;
+  color: #334155;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.date {
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.metricsRow {
+  display: flex;
+  gap: 16px;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.summaryInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.financials {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.total {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-color, #0f172a);
+}
+
+.badge {
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.paidFull { background: #dcfce7; color: #15803d; }
+.paidPartial { background: #fef3c7; color: #b45309; }
+.unpaid { background: #fee2e2; color: #b91c1c; }
+
+.arrowBtn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}

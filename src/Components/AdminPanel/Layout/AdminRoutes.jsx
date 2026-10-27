@@ -14,6 +14,8 @@ const renderCycleRoutes = (prefix) => (
     <Route path={`${prefix}/feed`} element={<FeedTab />} />
     <Route path={`${prefix}/drugs`} element={<DrugsTab />} />
     <Route path={`${prefix}/export`} element={<ExportTab />} />
+    <Route path={`${prefix}/export/loading`} element={<ExportTab />} />
+    <Route path={`${prefix}/export/loading/:saleId`} element={<ExportTab />} />
     <Route path={`${prefix}/overview`} element={<OverviewTab />} />
   </React.Fragment>
 );

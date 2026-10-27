@@ -1,0 +1,78 @@
+.form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.inputWrap {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  position: absolute;
+  right: 12px;
+  color: #0284c7;
+}
+
+.inputWrap input {
+  width: 100%;
+  padding: 12px 38px 12px 14px;
+  border-radius: 10px;
+  border: 2px solid #bae6fd;
+  background: #f0f9ff;
+  color: #0369a1;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.inputWrap input:focus {
+  outline: none;
+  border-color: #0284c7;
+  background: #ffffff;
+}
+
+.ratioPills {
+  display: flex;
+  gap: 6px;
+}
+
+.pill {
+  padding: 8px 12px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.activePill {
+  background: #e0f2fe;
+  color: #0369a1;
+  border-color: #7dd3fc;
+  font-weight: 700;
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 20px;
+  background: #0284c7;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.addBtn:hover {
+  background: #0369a1;
+}

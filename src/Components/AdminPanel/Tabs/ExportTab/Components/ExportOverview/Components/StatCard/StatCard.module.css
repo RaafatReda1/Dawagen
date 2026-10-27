@@ -1,0 +1,66 @@
+.card {
+  padding: 18px 20px;
+  background: var(--card-bg, #ffffff);
+  border-radius: 14px;
+  border: 1px solid var(--border-color, #e2e8f0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+}
+
+.valueRow {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.value {
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--text-color, #0f172a);
+}
+
+.unit {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.subtitle {
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.green .iconWrap { background: #dcfce7; color: #16a34a; }
+.blue .iconWrap { background: #e0f2fe; color: #0284c7; }
+.amber .iconWrap { background: #fef3c7; color: #d97706; }
+.rose .iconWrap { background: #ffe4e6; color: #e11d48; }
+.purple .iconWrap { background: #f3e8ff; color: #9333ea; }

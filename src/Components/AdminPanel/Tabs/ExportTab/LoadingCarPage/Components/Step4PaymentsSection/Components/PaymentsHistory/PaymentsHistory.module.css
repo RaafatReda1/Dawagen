@@ -1,0 +1,66 @@
+.empty {
+  padding: 16px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.82rem;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+}
+
+.amount {
+  color: #16a34a;
+}
+
+.method {
+  color: #64748b;
+  font-size: 0.78rem;
+}
+
+.note {
+  font-size: 0.78rem;
+  background: #f1f5f9;
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #334155;
+}
+
+.date {
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.delBtn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.delBtn:hover {
+  background: #fee2e2;
+  border-radius: 4px;
+}
